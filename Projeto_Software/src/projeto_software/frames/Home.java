@@ -81,6 +81,11 @@ public class Home extends javax.swing.JFrame {
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnRelatorio.setText("Relatório");
+        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,7 +222,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void menuItemCadastarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastarPedidosActionPerformed
-        // TODO add your handling code here:
+        NovoPedido novopedido = new NovoPedido();
+        novopedido.setVisible(true);
+        dispose();
     }//GEN-LAST:event_menuItemCadastarPedidosActionPerformed
 
     private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
@@ -225,6 +232,12 @@ public class Home extends javax.swing.JFrame {
         visualizarPedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
+
+    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+        Relatorio relatorio = new Relatorio();
+        relatorio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
