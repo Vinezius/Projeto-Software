@@ -8,12 +8,12 @@ package projeto_software.frames;
  *
  * @author User
  */
-public class Home extends javax.swing.JFrame {
+public class VisualizarPedidos extends javax.swing.JFrame {
 
     /**
-     * Creates new form Home
+     * Creates new form Pedidos
      */
-    public Home() {
+    public VisualizarPedidos() {
         initComponents();
     }
 
@@ -26,24 +26,17 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuBar3 = new javax.swing.JMenuBar();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         btnRelatorio = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
+        menuCadastros = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -53,27 +46,15 @@ public class Home extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         menuPedidos = new javax.swing.JMenu();
         menuItemVisualizarPedidos = new javax.swing.JMenuItem();
-        menuItemCadastarPedidos = new javax.swing.JMenuItem();
-
-        jMenu1.setText("jMenu1");
-
-        jMenu2.setText("jMenu2");
-
-        jMenuItem7.setText("jMenuItem7");
-
-        jMenu6.setText("File");
-        jMenuBar2.add(jMenu6);
-
-        jMenu7.setText("Edit");
-        jMenuBar2.add(jMenu7);
-
-        jMenu8.setText("File");
-        jMenuBar3.add(jMenu8);
-
-        jMenu9.setText("Edit");
-        jMenuBar3.add(jMenu9);
+        menuItemCadastrarPedidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setText("Sistema de Controle de Pizzaria");
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,33 +63,49 @@ public class Home extends javax.swing.JFrame {
 
         btnRelatorio.setText("Relatório");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jButton1.setText("jButton1");
 
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("jButton2");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setText("Sistema de Controle de Pizzaria");
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nº Pedido", "Status", "Data Hora Pedido", "Cliente", "Cadastrado", "Pedido"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("\n\n\n\n\n       Sejam bem-vindos ao software!");
-        jScrollPane1.setViewportView(jTextArea1);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        jMenu5.setText("Cadastros ↓");
-        jMenu5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jMenu5.setMinimumSize(new java.awt.Dimension(90, 90));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel2.setText("Para editar um pedido, preencha as informações abaixo e clique em editar. Para excluir apenas insira o número do pedido e clique em excluir.");
+
+        menuCadastros.setText("Cadastros ↓");
+        menuCadastros.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuCadastros.setMinimumSize(new java.awt.Dimension(90, 90));
 
         jMenuItem2.setText("Cliente");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -116,27 +113,27 @@ public class Home extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem2);
+        menuCadastros.add(jMenuItem2);
 
         jMenuItem1.setText("Entregador");
-        jMenu5.add(jMenuItem1);
+        menuCadastros.add(jMenuItem1);
 
         jMenuItem3.setText("Funcionario");
-        jMenu5.add(jMenuItem3);
+        menuCadastros.add(jMenuItem3);
 
         jMenuItem4.setText("Modalidade Entrega");
-        jMenu5.add(jMenuItem4);
+        menuCadastros.add(jMenuItem4);
 
         jMenuItem5.setText("Promoção");
-        jMenu5.add(jMenuItem5);
+        menuCadastros.add(jMenuItem5);
 
         Funcionário.setText("Sabor");
-        jMenu5.add(Funcionário);
+        menuCadastros.add(Funcionário);
 
         jMenuItem6.setText("Tamanho");
-        jMenu5.add(jMenuItem6);
+        menuCadastros.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(menuCadastros);
 
         menuPedidos.setText("Pedidos ↓");
         menuPedidos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -149,13 +146,13 @@ public class Home extends javax.swing.JFrame {
         });
         menuPedidos.add(menuItemVisualizarPedidos);
 
-        menuItemCadastarPedidos.setText("Cadastrar Pedidos");
-        menuItemCadastarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCadastrarPedidos.setText("Cadastrar Pedidos");
+        menuItemCadastrarPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCadastarPedidosActionPerformed(evt);
+                menuItemCadastrarPedidosActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemCadastarPedidos);
+        menuPedidos.add(menuItemCadastrarPedidos);
 
         jMenuBar1.add(menuPedidos);
 
@@ -168,62 +165,58 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(48, 48, 48)))
+                                .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(223, 223, 223)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 310, Short.MAX_VALUE)))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
+                        .addGap(0, 266, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(26, 26, 26)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(btnRelatorio)
-                                .addGap(303, 303, 303)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(189, 189, 189))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(btnRelatorio))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+ 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void menuItemCadastarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastarPedidosActionPerformed
+    private void menuItemCadastrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCadastarPedidosActionPerformed
+    }//GEN-LAST:event_menuItemCadastrarPedidosActionPerformed
 
     private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
-        VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
-        visualizarPedidos.setVisible(true);
-        dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
 
     /**
@@ -243,20 +236,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarPedidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new VisualizarPedidos().setVisible(true);
             }
         });
     }
@@ -264,30 +258,23 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Funcionário;
     private javax.swing.JButton btnRelatorio;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JMenuItem menuItemCadastarPedidos;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenuItem menuItemCadastrarPedidos;
     private javax.swing.JMenuItem menuItemVisualizarPedidos;
     private javax.swing.JMenu menuPedidos;
     // End of variables declaration//GEN-END:variables
