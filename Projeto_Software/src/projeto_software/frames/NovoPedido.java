@@ -75,7 +75,6 @@ public class NovoPedido extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         Funcionário = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -161,7 +160,7 @@ public class NovoPedido extends javax.swing.JFrame {
         txtfEntregador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel9.setText("Cupom");
+        jLabel9.setText("Promoção");
 
         comboCupom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -228,9 +227,6 @@ public class NovoPedido extends javax.swing.JFrame {
 
         jMenuItem3.setText("Funcionario");
         menuCadastros.add(jMenuItem3);
-
-        jMenuItem4.setText("Modalidade Entrega");
-        menuCadastros.add(jMenuItem4);
 
         jMenuItem5.setText("Promoção");
         menuCadastros.add(jMenuItem5);
@@ -463,6 +459,7 @@ public class NovoPedido extends javax.swing.JFrame {
         );
 
         comboEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"ENTREGA", "RETIRADA" }));
+        comboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PEQUENA", "MÉDIA", "GRANDE" }));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -587,7 +584,6 @@ public class NovoPedido extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JSeparator jSeparator1;

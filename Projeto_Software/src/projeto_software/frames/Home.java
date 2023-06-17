@@ -47,7 +47,6 @@ public class Home extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         Funcionário = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -128,9 +127,6 @@ public class Home extends javax.swing.JFrame {
 
         jMenuItem3.setText("Funcionario");
         jMenu5.add(jMenuItem3);
-
-        jMenuItem4.setText("Modalidade Entrega");
-        jMenu5.add(jMenuItem4);
 
         jMenuItem5.setText("Promoção");
         jMenu5.add(jMenuItem5);
@@ -291,7 +287,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

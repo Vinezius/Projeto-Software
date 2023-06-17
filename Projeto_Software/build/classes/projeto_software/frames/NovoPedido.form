@@ -37,11 +37,6 @@
                 <Property name="text" type="java.lang.String" value="Funcionario"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Modalidade Entrega"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Promo&#xe7;&#xe3;o"/>
@@ -540,7 +535,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cupom"/>
+        <Property name="text" type="java.lang.String" value="Promo&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboCupom">
@@ -611,6 +606,7 @@
         </Property>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="comboTamanho.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;PEQUENA&quot;, &quot;M&#xc9;DIA&quot;, &quot;GRANDE&quot; }));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
