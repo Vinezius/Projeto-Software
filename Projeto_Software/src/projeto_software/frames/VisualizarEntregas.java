@@ -28,12 +28,11 @@ public class VisualizarEntregas extends javax.swing.JFrame {
 
         btnRelatorio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        btnBuscarPedidos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtfModalidade = new javax.swing.JTextField();
+        txtfTamanho = new javax.swing.JTextField();
         txtfPreco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
@@ -42,18 +41,23 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtfNumFatias = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        Funcionário = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        menuPedidos = new javax.swing.JMenu();
-        menuItemVisualizarPedidos = new javax.swing.JMenuItem();
+        menuItemCadastrarCliente = new javax.swing.JMenuItem();
+        menuItemCadastrarEntregador = new javax.swing.JMenuItem();
+        menuItemCadastrarFuncionario = new javax.swing.JMenuItem();
+        menuItemCadastrarPromocao = new javax.swing.JMenuItem();
+        menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos = new javax.swing.JMenuItem();
+        menuPedidos = new javax.swing.JMenu();
+        menuItemVisualizarClientes = new javax.swing.JMenuItem();
+        menuItemVisualizarEntregadores = new javax.swing.JMenuItem();
+        menuItemVisualizarFuncionarios = new javax.swing.JMenuItem();
+        menuItemVisualizarPromocao = new javax.swing.JMenuItem();
+        menuItemVisualizarPedidos = new javax.swing.JMenuItem();
+        menuItemVisualizarFormaEntrega = new javax.swing.JMenuItem();
+        menuItemVisualizarTamanho = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,8 +72,6 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnBuscarPedidos.setText("Buscar Tamanhos");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,44 +127,105 @@ public class VisualizarEntregas extends javax.swing.JFrame {
 
         jLabel5.setText("Nº de fatias:");
 
-        jTextField1.setText("jTextField1");
+        txtfNumFatias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfNumFatiasActionPerformed(evt);
+            }
+        });
 
         menuCadastros.setText("Cadastros ↓");
         menuCadastros.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         menuCadastros.setMinimumSize(new java.awt.Dimension(90, 90));
 
-        jMenuItem2.setText("Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCadastrarCliente.setText("Cliente");
+        menuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuItemCadastrarClienteActionPerformed(evt);
             }
         });
-        menuCadastros.add(jMenuItem2);
+        menuCadastros.add(menuItemCadastrarCliente);
 
-        jMenuItem1.setText("Entregador");
-        menuCadastros.add(jMenuItem1);
+        menuItemCadastrarEntregador.setText("Entregador");
+        menuItemCadastrarEntregador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarEntregadorActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarEntregador);
 
-        jMenuItem3.setText("Funcionario");
-        menuCadastros.add(jMenuItem3);
+        menuItemCadastrarFuncionario.setText("Funcionario");
+        menuItemCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarFuncionario);
 
-        jMenuItem5.setText("Promoção");
-        menuCadastros.add(jMenuItem5);
+        menuItemCadastrarPromocao.setText("Promoção");
+        menuItemCadastrarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPromocaoActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarPromocao);
 
-        Funcionário.setText("Sabor");
-        menuCadastros.add(Funcionário);
+        menuItemCadastrarSabor.setText("Sabor");
+        menuItemCadastrarSabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarSaborActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarSabor);
 
-        jMenuItem6.setText("Tamanho");
-        menuCadastros.add(jMenuItem6);
+        menuItemCadastrarPedidos.setText("Pedidos");
+        menuItemCadastrarPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPedidosActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarPedidos);
 
         jMenuBar1.add(menuCadastros);
 
-        menuPedidos.setText("Pedidos ↓");
+        menuPedidos.setText("Visualizar ↓");
         menuPedidos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         menuPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPedidosActionPerformed(evt);
             }
         });
+
+        menuItemVisualizarClientes.setText("Visualizar Clientes");
+        menuItemVisualizarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarClientesActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarClientes);
+
+        menuItemVisualizarEntregadores.setText("Visualizar Entregadores");
+        menuItemVisualizarEntregadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarEntregadoresActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarEntregadores);
+
+        menuItemVisualizarFuncionarios.setText("Visualizar Funcionários");
+        menuItemVisualizarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFuncionariosActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarFuncionarios);
+
+        menuItemVisualizarPromocao.setText("Visualizar Promoções");
+        menuItemVisualizarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPromocaoActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarPromocao);
 
         menuItemVisualizarPedidos.setText("Visualizar Pedidos");
         menuItemVisualizarPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -172,13 +235,21 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         });
         menuPedidos.add(menuItemVisualizarPedidos);
 
-        menuItemCadastrarPedidos.setText("Cadastrar Pedidos");
-        menuItemCadastrarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarFormaEntrega.setText("Visualizar Formas de Entrega");
+        menuItemVisualizarFormaEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCadastrarPedidosActionPerformed(evt);
+                menuItemVisualizarFormaEntregaActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemCadastrarPedidos);
+        menuPedidos.add(menuItemVisualizarFormaEntrega);
+
+        menuItemVisualizarTamanho.setText("Visualizar Tamanhos");
+        menuItemVisualizarTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarTamanhoActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarTamanho);
 
         jMenuBar1.add(menuPedidos);
 
@@ -191,38 +262,39 @@ public class VisualizarEntregas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBuscarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(879, 879, 879))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtfModalidade)
-                                        .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap())
+                                .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtfNumFatias))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtfTamanho)
+                                                .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(263, 263, 263))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,41 +302,37 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(btnRelatorio))))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnRelatorio))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuscarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel2)
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(txtfModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addComponent(checkAtivo)
-                        .addGap(124, 124, 124)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel2)
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35)
+                                .addComponent(checkAtivo)
+                                .addGap(124, 124, 124)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -281,16 +349,20 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfPrecoActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void menuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarClienteActionPerformed
+        AdicionarCliente adicionarCliente = new AdicionarCliente();
+        adicionarCliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarClienteActionPerformed
 
     private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
-        // TODO add your handling code here:
+       VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
+       visualizarPedidos.setVisible(true);
+       dispose();
     }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
 
     private void menuItemCadastrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidosActionPerformed
-        NovoPedido novopedido = new NovoPedido();
+        AdicionarPedido novopedido = new AdicionarPedido();
         novopedido.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemCadastrarPedidosActionPerformed
@@ -298,6 +370,70 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     private void menuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidosActionPerformed
+
+    private void menuItemVisualizarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadoresActionPerformed
+        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
+        visualizarEntregadores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarEntregadoresActionPerformed
+
+    private void menuItemVisualizarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanhoActionPerformed
+        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
+        visualizarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarTamanhoActionPerformed
+
+    private void menuItemVisualizarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientesActionPerformed
+       VisualizarClientes visualizarClientes = new VisualizarClientes();
+       visualizarClientes.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_menuItemVisualizarClientesActionPerformed
+
+    private void menuItemVisualizarFormaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntregaActionPerformed
+        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        visualizarEntregas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFormaEntregaActionPerformed
+
+    private void menuItemVisualizarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionariosActionPerformed
+        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
+        visualizarFuncionarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFuncionariosActionPerformed
+
+    private void menuItemCadastrarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarEntregadorActionPerformed
+       AdicionarEntregador adicionarEntregador = new AdicionarEntregador();
+       adicionarEntregador.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_menuItemCadastrarEntregadorActionPerformed
+
+    private void menuItemCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarFuncionarioActionPerformed
+        AdicionarFuncionario adicionarFuncionario = new AdicionarFuncionario();
+        adicionarFuncionario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarFuncionarioActionPerformed
+
+    private void txtfNumFatiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNumFatiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfNumFatiasActionPerformed
+
+    private void menuItemVisualizarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocaoActionPerformed
+        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
+        visualizarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPromocaoActionPerformed
+
+    private void menuItemCadastrarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPromocaoActionPerformed
+        AdicionarPromocao adicionarPromocao = new AdicionarPromocao();
+        adicionarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarPromocaoActionPerformed
+
+    private void menuItemCadastrarSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarSaborActionPerformed
+        AdicionarSabor adicionarSabor = new AdicionarSabor();
+        adicionarSabor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,8 +471,6 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Funcionário;
-    private javax.swing.JButton btnBuscarPedidos;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnRelatorio;
@@ -347,21 +481,27 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu menuCadastros;
+    private javax.swing.JMenuItem menuItemCadastrarCliente;
+    private javax.swing.JMenuItem menuItemCadastrarEntregador;
+    private javax.swing.JMenuItem menuItemCadastrarFuncionario;
     private javax.swing.JMenuItem menuItemCadastrarPedidos;
+    private javax.swing.JMenuItem menuItemCadastrarPromocao;
+    private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemVisualizarClientes;
+    private javax.swing.JMenuItem menuItemVisualizarEntregadores;
+    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega;
+    private javax.swing.JMenuItem menuItemVisualizarFuncionarios;
     private javax.swing.JMenuItem menuItemVisualizarPedidos;
+    private javax.swing.JMenuItem menuItemVisualizarPromocao;
+    private javax.swing.JMenuItem menuItemVisualizarTamanho;
     private javax.swing.JMenu menuPedidos;
-    private javax.swing.JTextField txtfModalidade;
+    private javax.swing.JTextField txtfNumFatias;
     private javax.swing.JTextField txtfPreco;
+    private javax.swing.JTextField txtfTamanho;
     // End of variables declaration//GEN-END:variables
 }

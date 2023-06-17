@@ -50,19 +50,21 @@ public class Relatorio extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuCadastros = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        Funcionário = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        menuCadastros1 = new javax.swing.JMenu();
+        menuItemCadastrarCliente = new javax.swing.JMenuItem();
+        menuItemCadastrarEntregador = new javax.swing.JMenuItem();
+        menuItemCadastrarFuncionario = new javax.swing.JMenuItem();
+        menuItemCadastrarPromocao = new javax.swing.JMenuItem();
+        menuItemCadastrarSabor = new javax.swing.JMenuItem();
+        menuItemCadastrarPedidos2 = new javax.swing.JMenuItem();
         menuPedidos = new javax.swing.JMenu();
+        menuItemVisualizarClientes = new javax.swing.JMenuItem();
+        menuItemVisualizarEntregadores = new javax.swing.JMenuItem();
+        menuItemVisualizarFuncionarios = new javax.swing.JMenuItem();
+        menuItemVisualizarPromocao = new javax.swing.JMenuItem();
         menuItemVisualizarPedidos = new javax.swing.JMenuItem();
-        menuItemCadastrarPedidos = new javax.swing.JMenuItem();
-        menuPedidos1 = new javax.swing.JMenu();
-        menuItemVisualizarPedidos1 = new javax.swing.JMenuItem();
-        menuItemCadastrarPedidos1 = new javax.swing.JMenuItem();
+        menuItemVisualizarFormaEntrega = new javax.swing.JMenuItem();
+        menuItemVisualizarTamanho = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,35 +135,99 @@ public class Relatorio extends javax.swing.JFrame {
 
         jButton3.setText("Buscar Dados");
 
-        menuCadastros.setText("Cadastros ↓");
-        menuCadastros.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        menuCadastros.setMinimumSize(new java.awt.Dimension(90, 90));
+        menuCadastros1.setText("Cadastros ↓");
+        menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuCadastros1.setMinimumSize(new java.awt.Dimension(90, 90));
 
-        jMenuItem2.setText("Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCadastrarCliente.setText("Cliente");
+        menuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuItemCadastrarClienteActionPerformed(evt);
             }
         });
-        menuCadastros.add(jMenuItem2);
+        menuCadastros1.add(menuItemCadastrarCliente);
 
-        jMenuItem1.setText("Entregador");
-        menuCadastros.add(jMenuItem1);
+        menuItemCadastrarEntregador.setText("Entregador");
+        menuItemCadastrarEntregador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarEntregadorActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarEntregador);
 
-        jMenuItem3.setText("Funcionario");
-        menuCadastros.add(jMenuItem3);
+        menuItemCadastrarFuncionario.setText("Funcionario");
+        menuItemCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarFuncionario);
 
-        jMenuItem5.setText("Promoção");
-        menuCadastros.add(jMenuItem5);
+        menuItemCadastrarPromocao.setText("Promoção");
+        menuItemCadastrarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPromocaoActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarPromocao);
 
-        Funcionário.setText("Sabor");
-        menuCadastros.add(Funcionário);
+        menuItemCadastrarSabor.setText("Sabor");
+        menuItemCadastrarSabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarSaborActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarSabor);
 
-        jMenuItem6.setText("Tamanho");
-        menuCadastros.add(jMenuItem6);
+        menuItemCadastrarPedidos2.setText("Pedidos");
+        menuItemCadastrarPedidos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPedidos2ActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarPedidos2);
 
-        menuPedidos.setText("Pedidos ↓");
+        jMenuBar1.add(menuCadastros1);
+
+        menuPedidos.setText("Visualizar ↓");
         menuPedidos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPedidosActionPerformed(evt);
+            }
+        });
+
+        menuItemVisualizarClientes.setText("Visualizar Clientes");
+        menuItemVisualizarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarClientesActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarClientes);
+
+        menuItemVisualizarEntregadores.setText("Visualizar Entregadores");
+        menuItemVisualizarEntregadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarEntregadoresActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarEntregadores);
+
+        menuItemVisualizarFuncionarios.setText("Visualizar Funcionários");
+        menuItemVisualizarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFuncionariosActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarFuncionarios);
+
+        menuItemVisualizarPromocao.setText("Visualizar Promoções");
+        menuItemVisualizarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPromocaoActionPerformed(evt);
+            }
+        });
+        menuPedidos.add(menuItemVisualizarPromocao);
 
         menuItemVisualizarPedidos.setText("Visualizar Pedidos");
         menuItemVisualizarPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -171,38 +237,23 @@ public class Relatorio extends javax.swing.JFrame {
         });
         menuPedidos.add(menuItemVisualizarPedidos);
 
-        menuItemCadastrarPedidos.setText("Cadastrar Pedidos");
-        menuItemCadastrarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarFormaEntrega.setText("Visualizar Formas de Entrega");
+        menuItemVisualizarFormaEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCadastrarPedidosActionPerformed(evt);
+                menuItemVisualizarFormaEntregaActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemCadastrarPedidos);
+        menuPedidos.add(menuItemVisualizarFormaEntrega);
 
-        menuCadastros.add(menuPedidos);
-
-        jMenuBar1.add(menuCadastros);
-
-        menuPedidos1.setText("Pedidos ↓");
-        menuPedidos1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
-        menuItemVisualizarPedidos1.setText("Visualizar Pedidos");
-        menuItemVisualizarPedidos1.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarTamanho.setText("Visualizar Tamanhos");
+        menuItemVisualizarTamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarPedidos1ActionPerformed(evt);
+                menuItemVisualizarTamanhoActionPerformed(evt);
             }
         });
-        menuPedidos1.add(menuItemVisualizarPedidos1);
+        menuPedidos.add(menuItemVisualizarTamanho);
 
-        menuItemCadastrarPedidos1.setText("Cadastrar Pedidos");
-        menuItemCadastrarPedidos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCadastrarPedidos1ActionPerformed(evt);
-            }
-        });
-        menuPedidos1.add(menuItemCadastrarPedidos1);
-
-        jMenuBar1.add(menuPedidos1);
+        jMenuBar1.add(menuPedidos);
 
         setJMenuBar(jMenuBar1);
 
@@ -331,31 +382,91 @@ public class Relatorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
-
-    private void menuItemCadastrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCadastrarPedidosActionPerformed
-
-    private void menuItemVisualizarPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidos1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemVisualizarPedidos1ActionPerformed
-
-    private void menuItemCadastrarPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidos1ActionPerformed
-        NovoPedido novoPedido = new NovoPedido();
-        novoPedido.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemCadastrarPedidos1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void menuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarClienteActionPerformed
+        AdicionarCliente adicionarCliente = new AdicionarCliente();
+        adicionarCliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarClienteActionPerformed
+
+    private void menuItemCadastrarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarEntregadorActionPerformed
+        AdicionarEntregador adicionarEntregador = new AdicionarEntregador();
+        adicionarEntregador.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarEntregadorActionPerformed
+
+    private void menuItemCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarFuncionarioActionPerformed
+        AdicionarFuncionario adicionarFuncionario = new AdicionarFuncionario();
+        adicionarFuncionario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarFuncionarioActionPerformed
+
+    private void menuItemCadastrarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPromocaoActionPerformed
+        AdicionarPromocao adicionarPromocao = new AdicionarPromocao();
+        adicionarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarPromocaoActionPerformed
+
+    private void menuItemCadastrarSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarSaborActionPerformed
+        AdicionarSabor adicionarSabor = new AdicionarSabor();
+        adicionarSabor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
+
+    private void menuItemCadastrarPedidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidos2ActionPerformed
+        AdicionarPedido novopedido = new AdicionarPedido();
+        novopedido.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarPedidos2ActionPerformed
+
+    private void menuItemVisualizarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientesActionPerformed
+        VisualizarClientes visualizarClientes = new VisualizarClientes();
+        visualizarClientes.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarClientesActionPerformed
+
+    private void menuItemVisualizarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadoresActionPerformed
+        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
+        visualizarEntregadores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarEntregadoresActionPerformed
+
+    private void menuItemVisualizarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionariosActionPerformed
+        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
+        visualizarFuncionarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFuncionariosActionPerformed
+
+    private void menuItemVisualizarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocaoActionPerformed
+        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
+        visualizarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPromocaoActionPerformed
+
+    private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
+        VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
+        visualizarPedidos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
+
+    private void menuItemVisualizarFormaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntregaActionPerformed
+        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        visualizarEntregas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFormaEntregaActionPerformed
+
+    private void menuItemVisualizarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanhoActionPerformed
+        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
+        visualizarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarTamanhoActionPerformed
+
+    private void menuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPedidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,7 +504,6 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Funcionário;
     private javax.swing.JButton btnRelatorio1;
     private javax.swing.JComboBox<String> comboEntrega;
     private javax.swing.JComboBox<String> comboTamanho;
@@ -411,11 +521,6 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -423,12 +528,20 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JMenu menuCadastros;
-    private javax.swing.JMenuItem menuItemCadastrarPedidos;
-    private javax.swing.JMenuItem menuItemCadastrarPedidos1;
+    private javax.swing.JMenu menuCadastros1;
+    private javax.swing.JMenuItem menuItemCadastrarCliente;
+    private javax.swing.JMenuItem menuItemCadastrarEntregador;
+    private javax.swing.JMenuItem menuItemCadastrarFuncionario;
+    private javax.swing.JMenuItem menuItemCadastrarPedidos2;
+    private javax.swing.JMenuItem menuItemCadastrarPromocao;
+    private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemVisualizarClientes;
+    private javax.swing.JMenuItem menuItemVisualizarEntregadores;
+    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega;
+    private javax.swing.JMenuItem menuItemVisualizarFuncionarios;
     private javax.swing.JMenuItem menuItemVisualizarPedidos;
-    private javax.swing.JMenuItem menuItemVisualizarPedidos1;
+    private javax.swing.JMenuItem menuItemVisualizarPromocao;
+    private javax.swing.JMenuItem menuItemVisualizarTamanho;
     private javax.swing.JMenu menuPedidos;
-    private javax.swing.JMenu menuPedidos1;
     // End of variables declaration//GEN-END:variables
 }

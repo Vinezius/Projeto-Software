@@ -48,16 +48,21 @@ public class VisualizarPedidos extends javax.swing.JFrame {
         btnNovoPedido = new javax.swing.JButton();
         btnBuscarPedidos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuCadastros = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        Funcionário = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        menuPedidos = new javax.swing.JMenu();
-        menuItemVisualizarPedidos = new javax.swing.JMenuItem();
-        menuItemCadastrarPedidos = new javax.swing.JMenuItem();
+        menuCadastros1 = new javax.swing.JMenu();
+        menuItemCadastrarCliente = new javax.swing.JMenuItem();
+        menuItemCadastrarEntregador = new javax.swing.JMenuItem();
+        menuItemCadastrarFuncionario = new javax.swing.JMenuItem();
+        menuItemCadastrarPromocao = new javax.swing.JMenuItem();
+        menuItemCadastrarSabor = new javax.swing.JMenuItem();
+        menuItemCadastrarPedidos1 = new javax.swing.JMenuItem();
+        menuPedidos1 = new javax.swing.JMenu();
+        menuItemVisualizarClientes = new javax.swing.JMenuItem();
+        menuItemVisualizarEntregadores = new javax.swing.JMenuItem();
+        menuItemVisualizarFuncionarios = new javax.swing.JMenuItem();
+        menuItemVisualizarPromocao = new javax.swing.JMenuItem();
+        menuItemVisualizarPedidos1 = new javax.swing.JMenuItem();
+        menuItemVisualizarFormaEntrega = new javax.swing.JMenuItem();
+        menuItemVisualizarTamanho = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,60 +151,125 @@ public class VisualizarPedidos extends javax.swing.JFrame {
 
         btnBuscarPedidos.setText("Buscar Pedidos");
 
-        menuCadastros.setText("Cadastros ↓");
-        menuCadastros.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        menuCadastros.setMinimumSize(new java.awt.Dimension(90, 90));
+        menuCadastros1.setText("Cadastros ↓");
+        menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuCadastros1.setMinimumSize(new java.awt.Dimension(90, 90));
 
-        jMenuItem2.setText("Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCadastrarCliente.setText("Cliente");
+        menuItemCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuItemCadastrarClienteActionPerformed(evt);
             }
         });
-        menuCadastros.add(jMenuItem2);
+        menuCadastros1.add(menuItemCadastrarCliente);
 
-        jMenuItem1.setText("Entregador");
-        menuCadastros.add(jMenuItem1);
-
-        jMenuItem3.setText("Funcionario");
-        menuCadastros.add(jMenuItem3);
-
-        jMenuItem5.setText("Promoção");
-        menuCadastros.add(jMenuItem5);
-
-        Funcionário.setText("Sabor");
-        menuCadastros.add(Funcionário);
-
-        jMenuItem6.setText("Tamanho");
-        menuCadastros.add(jMenuItem6);
-
-        jMenuBar1.add(menuCadastros);
-
-        menuPedidos.setText("Pedidos ↓");
-        menuPedidos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        menuPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCadastrarEntregador.setText("Entregador");
+        menuItemCadastrarEntregador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPedidosActionPerformed(evt);
+                menuItemCadastrarEntregadorActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarEntregador);
+
+        menuItemCadastrarFuncionario.setText("Funcionario");
+        menuItemCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarFuncionarioActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarFuncionario);
+
+        menuItemCadastrarPromocao.setText("Promoção");
+        menuItemCadastrarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPromocaoActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarPromocao);
+
+        menuItemCadastrarSabor.setText("Sabor");
+        menuItemCadastrarSabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarSaborActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarSabor);
+
+        menuItemCadastrarPedidos1.setText("Pedidos");
+        menuItemCadastrarPedidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarPedidos1ActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarPedidos1);
+
+        jMenuBar1.add(menuCadastros1);
+
+        menuPedidos1.setText("Visualizar ↓");
+        menuPedidos1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuPedidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPedidos1ActionPerformed(evt);
             }
         });
 
-        menuItemVisualizarPedidos.setText("Visualizar Pedidos");
-        menuItemVisualizarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarClientes.setText("Visualizar Clientes");
+        menuItemVisualizarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarPedidosActionPerformed(evt);
+                menuItemVisualizarClientesActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarPedidos);
+        menuPedidos1.add(menuItemVisualizarClientes);
 
-        menuItemCadastrarPedidos.setText("Cadastrar Pedidos");
-        menuItemCadastrarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarEntregadores.setText("Visualizar Entregadores");
+        menuItemVisualizarEntregadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCadastrarPedidosActionPerformed(evt);
+                menuItemVisualizarEntregadoresActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemCadastrarPedidos);
+        menuPedidos1.add(menuItemVisualizarEntregadores);
 
-        jMenuBar1.add(menuPedidos);
+        menuItemVisualizarFuncionarios.setText("Visualizar Funcionários");
+        menuItemVisualizarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFuncionariosActionPerformed(evt);
+            }
+        });
+        menuPedidos1.add(menuItemVisualizarFuncionarios);
+
+        menuItemVisualizarPromocao.setText("Visualizar Promoções");
+        menuItemVisualizarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPromocaoActionPerformed(evt);
+            }
+        });
+        menuPedidos1.add(menuItemVisualizarPromocao);
+
+        menuItemVisualizarPedidos1.setText("Visualizar Pedidos");
+        menuItemVisualizarPedidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPedidos1ActionPerformed(evt);
+            }
+        });
+        menuPedidos1.add(menuItemVisualizarPedidos1);
+
+        menuItemVisualizarFormaEntrega.setText("Visualizar Formas de Entrega");
+        menuItemVisualizarFormaEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFormaEntregaActionPerformed(evt);
+            }
+        });
+        menuPedidos1.add(menuItemVisualizarFormaEntrega);
+
+        menuItemVisualizarTamanho.setText("Visualizar Tamanhos");
+        menuItemVisualizarTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarTamanhoActionPerformed(evt);
+            }
+        });
+        menuPedidos1.add(menuItemVisualizarTamanho);
+
+        jMenuBar1.add(menuPedidos1);
 
         setJMenuBar(jMenuBar1);
 
@@ -303,39 +373,103 @@ public class VisualizarPedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void menuItemCadastrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidosActionPerformed
-        NovoPedido novopedido = new NovoPedido();
-        novopedido.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemCadastrarPedidosActionPerformed
-
-    private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
-
     private void txtfStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfStatusActionPerformed
 
     private void btnNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPedidoActionPerformed
-        NovoPedido novopedido = new NovoPedido();
+        AdicionarPedido novopedido = new AdicionarPedido();
         novopedido.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnNovoPedidoActionPerformed
-
-    private void menuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuPedidosActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         Relatorio relatorio = new Relatorio();
         relatorio.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnRelatorioActionPerformed
+
+    private void menuItemCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarClienteActionPerformed
+        AdicionarCliente adicionarCliente = new AdicionarCliente();
+        adicionarCliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarClienteActionPerformed
+
+    private void menuItemCadastrarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarEntregadorActionPerformed
+        AdicionarEntregador adicionarEntregador = new AdicionarEntregador();
+        adicionarEntregador.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarEntregadorActionPerformed
+
+    private void menuItemCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarFuncionarioActionPerformed
+        AdicionarFuncionario adicionarFuncionario = new AdicionarFuncionario();
+        adicionarFuncionario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarFuncionarioActionPerformed
+
+    private void menuItemCadastrarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPromocaoActionPerformed
+        AdicionarPromocao adicionarPromocao = new AdicionarPromocao();
+        adicionarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarPromocaoActionPerformed
+
+    private void menuItemCadastrarSaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarSaborActionPerformed
+        AdicionarSabor adicionarSabor = new AdicionarSabor();
+        adicionarSabor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
+
+    private void menuItemCadastrarPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidos1ActionPerformed
+        AdicionarPedido novopedido = new AdicionarPedido();
+        novopedido.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarPedidos1ActionPerformed
+
+    private void menuItemVisualizarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientesActionPerformed
+        VisualizarClientes visualizarClientes = new VisualizarClientes();
+        visualizarClientes.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarClientesActionPerformed
+
+    private void menuItemVisualizarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadoresActionPerformed
+        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
+        visualizarEntregadores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarEntregadoresActionPerformed
+
+    private void menuItemVisualizarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionariosActionPerformed
+        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
+        visualizarFuncionarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFuncionariosActionPerformed
+
+    private void menuItemVisualizarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocaoActionPerformed
+        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
+        visualizarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPromocaoActionPerformed
+
+    private void menuItemVisualizarPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidos1ActionPerformed
+        VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
+        visualizarPedidos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPedidos1ActionPerformed
+
+    private void menuItemVisualizarFormaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntregaActionPerformed
+        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        visualizarEntregas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFormaEntregaActionPerformed
+
+    private void menuItemVisualizarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanhoActionPerformed
+        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
+        visualizarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarTamanhoActionPerformed
+
+    private void menuPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPedidos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,7 +508,6 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Funcionário;
     private javax.swing.JButton btnBuscarPedidos;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
@@ -389,19 +522,25 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JMenu menuCadastros;
-    private javax.swing.JMenuItem menuItemCadastrarPedidos;
-    private javax.swing.JMenuItem menuItemVisualizarPedidos;
-    private javax.swing.JMenu menuPedidos;
+    private javax.swing.JMenu menuCadastros1;
+    private javax.swing.JMenuItem menuItemCadastrarCliente;
+    private javax.swing.JMenuItem menuItemCadastrarEntregador;
+    private javax.swing.JMenuItem menuItemCadastrarFuncionario;
+    private javax.swing.JMenuItem menuItemCadastrarPedidos1;
+    private javax.swing.JMenuItem menuItemCadastrarPromocao;
+    private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemVisualizarClientes;
+    private javax.swing.JMenuItem menuItemVisualizarEntregadores;
+    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega;
+    private javax.swing.JMenuItem menuItemVisualizarFuncionarios;
+    private javax.swing.JMenuItem menuItemVisualizarPedidos1;
+    private javax.swing.JMenuItem menuItemVisualizarPromocao;
+    private javax.swing.JMenuItem menuItemVisualizarTamanho;
+    private javax.swing.JMenu menuPedidos1;
     private javax.swing.JTextField txtfDescPedido;
     private javax.swing.JTextField txtfNomeCliente;
     private javax.swing.JTextField txtfNumPedido;

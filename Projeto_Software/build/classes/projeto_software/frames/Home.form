@@ -63,7 +63,7 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="menuCadastros">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastros &#x2193;"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -74,63 +74,121 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarClienteActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarEntregador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Entregador"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarEntregadorActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarFuncionario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Funcionario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarFuncionarioActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarPromocao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Promo&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarPromocaoActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Funcion&#xe1;rio">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarSabor">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sabor"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarSaborActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastrarPedidos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tamanho"/>
+                <Property name="text" type="java.lang.String" value="Pedidos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastrarPedidosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuPedidos">
+        <Menu class="javax.swing.JMenu" name="menuPedidos1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pedidos &#x2193;"/>
+            <Property name="text" type="java.lang.String" value="Visualizar &#x2193;"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPedidos1ActionPerformed"/>
+          </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPedidos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarClientes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Clientes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarClientesActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarEntregadores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Entregadores"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarEntregadoresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFuncionarios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Funcion&#xe1;rios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFuncionariosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPromocao">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Promo&#xe7;&#xf5;es"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPromocaoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPedidos1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Pedidos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPedidosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPedidos1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemCadastarPedidos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFormaEntrega">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar Pedidos"/>
+                <Property name="text" type="java.lang.String" value="Visualizar Formas de Entrega"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCadastarPedidosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFormaEntregaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarTamanho">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Tamanhos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarTamanhoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
