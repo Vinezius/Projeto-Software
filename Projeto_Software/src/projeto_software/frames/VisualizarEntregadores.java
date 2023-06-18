@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 /**
@@ -151,8 +152,18 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
         jLabel5.setText("Placa:");
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         checkAtivo.setText("Ativo");
 
@@ -311,7 +322,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(107, 107, 107)
                                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,6 +506,60 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         } 
     }//GEN-LAST:event_btnBuscarEntregadoresActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+
+            String cpf = txtfCpf.getText();
+            JSONObject json = new JSONObject();
+            json.put("cpf", cpf);
+            json.put("operacao", 17);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+            
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         try {
+            String cpf = txtfCpf.getText();
+            String nome = txtfNome.getText();
+            String placa = txtfPlaca.getText();
+            Boolean ativo = checkAtivo.isSelected();
+
+            JSONObject json = new JSONObject();
+            json.put("cpf", cpf);
+            json.put("nome", nome);
+            json.put("placa", placa);
+            json.put("ativo", ativo);
+            json.put("operacao", 16);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments

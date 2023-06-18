@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONObject;
 
@@ -37,11 +38,10 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
         tabelaEntregas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtfTamanho = new javax.swing.JTextField();
+        txtfModalidade = new javax.swing.JTextField();
         txtfPreco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
-        btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -106,7 +106,7 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelaEntregas);
 
-        jLabel2.setText("Para editar uma forma de entrega, preencha as informações abaixo e clique em editar. Para excluir apenas insira apenas a Modalidade e clique em excluir.");
+        jLabel2.setText("Para editar uma forma de entrega, preencha as informações abaixo e clique em editar. Modalidades apenas podem ser desativadas e não excluídas.");
 
         jLabel3.setText("Modalidade:");
 
@@ -120,9 +120,12 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
 
         checkAtivo.setText("Ativo");
 
-        btnExcluir.setText("Excluir");
-
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Sistema de Controle de Pizzaria - Visualizar Formas de Entrega");
@@ -286,20 +289,16 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtfTamanho)
-                                                .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(btnBuscarFormasEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtfModalidade)
+                                            .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnBuscarFormasEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator2)
@@ -329,7 +328,7 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
                                 .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(txtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtfModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -337,9 +336,7 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(checkAtivo)
                                 .addGap(170, 170, 170)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -465,6 +462,34 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+            try {
+            String modalidade = txtfModalidade.getText();
+            String preco = txtfPreco.getText();
+            Boolean ativo = checkAtivo.isSelected();
+
+            JSONObject json = new JSONObject();
+            json.put("modalidade", modalidade);
+            json.put("preco", preco);
+            json.put("ativo", ativo);
+            json.put("operacao", 33);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
     private void preencheEntregas() {
         String colunas[] = {"Modalidade", "Preço", "Ativo"};
         String dados[][] = {{"Retirada", "0", "Sim"},
@@ -514,7 +539,6 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarFormasEntrega;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnRelatorio;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
@@ -542,7 +566,7 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
     private javax.swing.JTable tabelaEntregas;
+    private javax.swing.JTextField txtfModalidade;
     private javax.swing.JTextField txtfPreco;
-    private javax.swing.JTextField txtfTamanho;
     // End of variables declaration//GEN-END:variables
 }

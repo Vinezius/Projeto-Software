@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 /**
@@ -38,11 +39,11 @@ public class VisualizarPromocao extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtfTamanho = new javax.swing.JTextField();
+        txtfPromocao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtfPreco = new javax.swing.JTextField();
+        txtfDesconto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtfNumFatias = new javax.swing.JTextField();
+        txtfObservacao = new javax.swing.JTextField();
         checkAtivo = new javax.swing.JCheckBox();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -120,31 +121,41 @@ public class VisualizarPromocao extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Para editar um tamanho, preencha as informações abaixo e clique em editar. Para excluir apenas insira o tamanho e clique em excluir.");
+        jLabel2.setText("Para editar uma promoção, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome da promoção e clique em excluir.");
 
         jLabel3.setText("Promoção:");
 
         jLabel4.setText("Desconto:");
 
-        txtfPreco.addActionListener(new java.awt.event.ActionListener() {
+        txtfDesconto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfPrecoActionPerformed(evt);
+                txtfDescontoActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Observação:");
 
-        txtfNumFatias.addActionListener(new java.awt.event.ActionListener() {
+        txtfObservacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfNumFatiasActionPerformed(evt);
+                txtfObservacaoActionPerformed(evt);
             }
         });
 
         checkAtivo.setText("Ativo");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnAdicionarPromocoes.setText("Adicionar Promoções");
         btnAdicionarPromocoes.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +315,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtfNumFatias))
+                                    .addComponent(txtfObservacao))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -315,8 +326,8 @@ public class VisualizarPromocao extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtfTamanho)
-                                        .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtfPromocao)
+                                        .addComponent(txtfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnBuscarPromocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,17 +364,17 @@ public class VisualizarPromocao extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(txtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addComponent(checkAtivo)
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(88, 88, 88)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,13 +392,13 @@ public class VisualizarPromocao extends javax.swing.JFrame {
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
-    private void txtfPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfPrecoActionPerformed
+    private void txtfDescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfDescontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtfPrecoActionPerformed
+    }//GEN-LAST:event_txtfDescontoActionPerformed
 
-    private void txtfNumFatiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNumFatiasActionPerformed
+    private void txtfObservacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfObservacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtfNumFatiasActionPerformed
+    }//GEN-LAST:event_txtfObservacaoActionPerformed
 
     private void btnAdicionarPromocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarPromocoesActionPerformed
         AdicionarPromocao adicionarPromocao = new AdicionarPromocao();
@@ -494,6 +505,61 @@ public class VisualizarPromocao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarPromocoesActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+
+            String Promocao = txtfPromocao.getText();
+            String desconto = txtfDesconto.getText();
+            String observacao = txtfObservacao.getText();
+            Boolean ativo = checkAtivo.isSelected();
+            JSONObject json = new JSONObject();
+            json.put("Promocao", Promocao);
+            json.put("desconto", desconto);
+            json.put("observacao", observacao);
+            json.put("ativo", ativo);
+            json.put("operacao", 20);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+
+            String Promocao = txtfPromocao.getText();
+
+            JSONObject json = new JSONObject();
+            json.put("Promocao", Promocao);
+            json.put("operacao", 20);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -562,8 +628,8 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao;
     private javax.swing.JMenuItem menuItemVisualizarTamanho;
     private javax.swing.JMenu menuPedidos2;
-    private javax.swing.JTextField txtfNumFatias;
-    private javax.swing.JTextField txtfPreco;
-    private javax.swing.JTextField txtfTamanho;
+    private javax.swing.JTextField txtfDesconto;
+    private javax.swing.JTextField txtfObservacao;
+    private javax.swing.JTextField txtfPromocao;
     // End of variables declaration//GEN-END:variables
 }

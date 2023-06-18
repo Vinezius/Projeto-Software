@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONObject;
 
@@ -37,7 +38,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        txtfModalidade = new javax.swing.JTextField();
+        txtfTamanho = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtfValor = new javax.swing.JTextField();
@@ -116,7 +117,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
 
         jLabel3.setText("Tamanho:");
 
-        jLabel2.setText("Para editar uma forma de Entrega, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome da Modalidade e clique em excluir.");
+        jLabel2.setText("Para editar um tamanho, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome do tamanho e clique em excluir.");
 
         jLabel4.setText("Valor:");
 
@@ -129,8 +130,18 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         checkAtivo.setText("Ativo");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnAdicionarTamanho.setText("Adicionar Tamanho");
         btnAdicionarTamanho.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +158,12 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Nº Fatias:");
+
+        txtfNumFatias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfNumFatiasActionPerformed(evt);
+            }
+        });
 
         menuCadastros1.setText("Cadastros ↓");
         menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -301,22 +318,23 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                                         .addComponent(btnBuscarTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnAdicionarTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtfNumFatias))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtfModalidade)
-                                            .addComponent(txtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtfNumFatias))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtfTamanho)
+                                                .addComponent(txtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator2)
@@ -348,7 +366,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(txtfModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -423,28 +441,27 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarTamanhoActionPerformed
 
     private void btnBuscarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTamanhoActionPerformed
-        String colunas[] =  {"Tamanho", "Preço", "Número de fatias", "Ativo"};
-        String dados[][]={{"Pequena", "20,99", "4", "Sim"},
-                            {"Média", "30,99", "6", "Sim"},
-                            {"Grande", "40,99", "8", "Sim"},
-                            {"Gigante", "50,99", "12","Não"}
+        String colunas[] = {"Tamanho", "Preço", "Número de fatias", "Ativo"};
+        String dados[][] = {{"Pequena", "20,99", "4", "Sim"},
+        {"Média", "30,99", "6", "Sim"},
+        {"Grande", "40,99", "8", "Sim"},
+        {"Gigante", "50,99", "12", "Não"}
         };
-        
+
         DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
-        
+
         tabelaTamanhos.setModel(tabela);
-        
-        
-         try {
-             JSONObject json = new JSONObject();
+
+        try {
+            JSONObject json = new JSONObject();
             json.put("operacao", 32);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarTamanhoActionPerformed
 
     private void menuItemVisualizarClientes6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientes6ActionPerformed
@@ -499,6 +516,65 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
+    private void txtfNumFatiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNumFatiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfNumFatiasActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+
+            String tamanho = txtfTamanho.getText();
+            String valor = txtfValor.getText();
+            Boolean ativo = checkAtivo.isSelected();
+            String numFatias = txtfNumFatias.getSelectedText();
+            JSONObject json = new JSONObject();
+            json.put("tamanho", tamanho);
+            json.put("valor", valor);
+            json.put("ativo", ativo);
+            json.put("numFatias", numFatias);
+            json.put("operacao", 30);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+
+            String tamanho = txtfTamanho.getText();
+           
+            JSONObject json = new JSONObject();
+            json.put("tamanho", tamanho);  
+            json.put("operacao", 31);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -525,7 +601,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VisualizarTamanho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -567,8 +643,8 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
     private javax.swing.JTable tabelaTamanhos;
-    private javax.swing.JTextField txtfModalidade;
     private javax.swing.JTextField txtfNumFatias;
+    private javax.swing.JTextField txtfTamanho;
     private javax.swing.JTextField txtfValor;
     // End of variables declaration//GEN-END:variables
 }

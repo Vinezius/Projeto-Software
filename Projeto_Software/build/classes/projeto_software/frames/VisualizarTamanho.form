@@ -188,25 +188,27 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btnAdicionarTamanho" min="-2" pref="198" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtfNumFatias" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnExcluir" min="-2" pref="91" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnEditar" min="-2" pref="91" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btnExcluir" min="-2" pref="91" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="btnEditar" min="-2" pref="91" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtfModalidade" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtfValor" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtfNumFatias" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtfTamanho" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtfValor" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -251,7 +253,7 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfModalidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfTamanho" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -374,11 +376,11 @@
         <Property name="text" type="java.lang.String" value="Tamanho:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfModalidade">
+    <Component class="javax.swing.JTextField" name="txtfTamanho">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Para editar uma forma de Entrega, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o nome da Modalidade e clique em excluir."/>
+        <Property name="text" type="java.lang.String" value="Para editar um tamanho, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o nome do tamanho e clique em excluir."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -400,11 +402,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAdicionarTamanho">
       <Properties>
@@ -428,6 +436,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfNumFatias">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfNumFatiasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

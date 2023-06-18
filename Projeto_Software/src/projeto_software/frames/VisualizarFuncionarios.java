@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 /**
@@ -36,7 +37,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtfNome = new javax.swing.JTextField();
-        txtfCpf = new javax.swing.JTextField();
+        txtfCargo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         checkAtivo = new javax.swing.JCheckBox();
         btnExcluir = new javax.swing.JButton();
@@ -113,13 +114,13 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Para editar um Entregador, preencha as informações abaixo e clique em editar. Para excluir apenas insira o CPF e clique em excluir.");
+        jLabel2.setText("Para editar um Entregador, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome e clique em excluir.");
 
         jLabel3.setText("Nome:");
 
-        txtfCpf.addActionListener(new java.awt.event.ActionListener() {
+        txtfCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfCpfActionPerformed(evt);
+                txtfCargoActionPerformed(evt);
             }
         });
 
@@ -128,8 +129,18 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         checkAtivo.setText("Ativo");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,19 +313,20 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
                                         .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                            .addComponent(txtfCpf)))
-                                    .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                                .addComponent(txtfCargo)))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -354,7 +366,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addComponent(checkAtivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -373,9 +385,9 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
-    private void txtfCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfCpfActionPerformed
+    private void txtfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfCargoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtfCpfActionPerformed
+    }//GEN-LAST:event_txtfCargoActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         Relatorio relatorio = new Relatorio();
@@ -482,6 +494,59 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarPedidosActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+            String nome = txtfNome.getText();
+            String cargo = txtfCargo.getText();
+            Boolean ativo = checkAtivo.isSelected();
+
+            JSONObject json = new JSONObject();
+            json.put("nome", nome);
+            json.put("cargo", cargo);
+            json.put("ativo", ativo);
+            json.put("operacao", 26);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+            String nome = txtfNome.getText();
+
+            JSONObject json = new JSONObject();
+            json.put("nome", nome);
+
+            json.put("operacao", 27);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -549,7 +614,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
-    private javax.swing.JTextField txtfCpf;
+    private javax.swing.JTextField txtfCargo;
     private javax.swing.JTextField txtfNome;
     // End of variables declaration//GEN-END:variables
 }

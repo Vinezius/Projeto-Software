@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 /**
@@ -143,8 +144,18 @@ public class VisualizarPedidos extends javax.swing.JFrame {
         jLabel6.setText("Pedido:");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnNovoPedido.setText("Fazer novo Pedido");
         btnNovoPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -504,6 +515,61 @@ public class VisualizarPedidos extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnBuscarPedidosActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         try {
+            String statusPedido = txtfStatus.getText();
+            String cliente = txtfNomeCliente.getText();
+            String numPedido = txtfNumPedido.getText();
+            String pedido = txtfDescPedido.getText();
+
+            JSONObject json = new JSONObject();
+            json.put("status", statusPedido);
+            json.put("cliente", cliente);
+            json.put("numPedido", numPedido);
+            json.put("pedido", pedido);
+            json.put("operacao", 10);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+         try {
+            
+            String numPedido = txtfNumPedido.getText();
+
+            JSONObject json = new JSONObject();
+            json.put("numPedido", numPedido);;
+            json.put("operacao", 11);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

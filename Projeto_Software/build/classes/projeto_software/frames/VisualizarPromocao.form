@@ -185,7 +185,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtfNumFatias" max="32767" attributes="0"/>
+                                  <Component id="txtfObservacao" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnExcluir" min="-2" pref="91" max="-2" attributes="0"/>
@@ -199,8 +199,8 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtfTamanho" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtfPreco" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                      <Component id="txtfPromocao" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtfDesconto" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -252,19 +252,19 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfTamanho" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfPromocao" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfPreco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="checkAtivo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfNumFatias" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtfObservacao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -380,7 +380,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Para editar um tamanho, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o tamanho e clique em excluir."/>
+        <Property name="text" type="java.lang.String" value="Para editar uma promo&#xe7;&#xe3;o, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o nome da promo&#xe7;&#xe3;o e clique em excluir."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -388,16 +388,16 @@
         <Property name="text" type="java.lang.String" value="Promo&#xe7;&#xe3;o:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfTamanho">
+    <Component class="javax.swing.JTextField" name="txtfPromocao">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Desconto:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfPreco">
+    <Component class="javax.swing.JTextField" name="txtfDesconto">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfPrecoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfDescontoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -405,9 +405,9 @@
         <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfNumFatias">
+    <Component class="javax.swing.JTextField" name="txtfObservacao">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfNumFatiasActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfObservacaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="checkAtivo">
@@ -419,11 +419,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAdicionarPromocoes">
       <Properties>

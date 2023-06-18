@@ -410,7 +410,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Para editar um cliente, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o CPF e clique em excluir."/>
+        <Property name="text" type="java.lang.String" value="Para editar um cliente, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o CPF e clique em excluir. "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -448,11 +448,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="checkAtivo">
       <Properties>

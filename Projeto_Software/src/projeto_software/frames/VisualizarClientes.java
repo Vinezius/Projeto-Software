@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 /**
@@ -130,7 +131,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Para editar um cliente, preencha as informações abaixo e clique em editar. Para excluir apenas insira o CPF e clique em excluir.");
+        jLabel2.setText("Para editar um cliente, preencha as informações abaixo e clique em editar. Para excluir apenas insira o CPF e clique em excluir. ");
 
         jLabel3.setText("CPF:");
 
@@ -147,8 +148,18 @@ public class VisualizarClientes extends javax.swing.JFrame {
         jLabel6.setText("Telefone:");
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         checkAtivo.setText("Ativo");
 
@@ -493,6 +504,63 @@ public class VisualizarClientes extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+            String cpf = txtfCpf.getText();
+            String nome = txtfNome.getText();
+            String endereco = txtfEndereco.getText();
+            String telefone = txtfTelefone.getText();
+            Boolean ativo = checkAtivo.isSelected();
+
+            JSONObject json = new JSONObject();
+            json.put("cpf", cpf);
+            json.put("nome", nome);
+            json.put("endereco", endereco);
+            json.put("telefone", telefone);
+            json.put("ativo", ativo);
+            json.put("operacao", 2);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+
+            String cpf = txtfCpf.getText();
+            JSONObject json = new JSONObject();
+            json.put("cpf", cpf);
+            json.put("operacao", 3);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+            
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
