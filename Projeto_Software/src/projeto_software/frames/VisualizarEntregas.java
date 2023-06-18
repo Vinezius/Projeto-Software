@@ -4,6 +4,8 @@
  */
 package projeto_software.frames;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
@@ -15,6 +17,7 @@ public class VisualizarEntregas extends javax.swing.JFrame {
      */
     public VisualizarEntregas() {
         initComponents();
+        preencheEntregas();
     }
 
     /**
@@ -29,7 +32,7 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         btnRelatorio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaEntregas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtfTamanho = new javax.swing.JTextField();
@@ -40,8 +43,7 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        txtfNumFatias = new javax.swing.JTextField();
+        btnBuscarFormasEntrega = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
         menuItemCadastrarCliente = new javax.swing.JMenuItem();
@@ -50,14 +52,15 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         menuItemCadastrarPromocao = new javax.swing.JMenuItem();
         menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos = new javax.swing.JMenuItem();
-        menuPedidos = new javax.swing.JMenu();
-        menuItemVisualizarClientes = new javax.swing.JMenuItem();
-        menuItemVisualizarEntregadores = new javax.swing.JMenuItem();
-        menuItemVisualizarFuncionarios = new javax.swing.JMenuItem();
-        menuItemVisualizarPromocao = new javax.swing.JMenuItem();
-        menuItemVisualizarPedidos = new javax.swing.JMenuItem();
-        menuItemVisualizarFormaEntrega = new javax.swing.JMenuItem();
-        menuItemVisualizarTamanho = new javax.swing.JMenuItem();
+        menuPedidos7 = new javax.swing.JMenu();
+        menuItemVisualizarClientes6 = new javax.swing.JMenuItem();
+        menuItemVisualizarEntregadores1 = new javax.swing.JMenuItem();
+        menuItemVisualizarFuncionarios1 = new javax.swing.JMenuItem();
+        menuItemVisualizarPromocao1 = new javax.swing.JMenuItem();
+        menuItemVisualizarPedidos2 = new javax.swing.JMenuItem();
+        menuItemVisualizarFormaEntrega1 = new javax.swing.JMenuItem();
+        menuItemSabores = new javax.swing.JMenuItem();
+        menuItemVisualizarTamanho1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,22 +76,22 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEntregas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tamanho", "Preço", "Número de fatias", "Ativo"
+                "Modalidade", "Preço", "Ativo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,11 +102,11 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaEntregas);
 
-        jLabel2.setText("Para editar um tamanho, preencha as informações abaixo e clique em editar. Para excluir apenas insira o tamanho e clique em excluir.");
+        jLabel2.setText("Para editar uma forma de entrega, preencha as informações abaixo e clique em editar. Para excluir apenas insira apenas a Modalidade e clique em excluir.");
 
-        jLabel3.setText("Tamanho");
+        jLabel3.setText("Modalidade:");
 
         txtfPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,11 +128,10 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setText("Nº de fatias:");
-
-        txtfNumFatias.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarFormasEntrega.setText("Buscar Formas de Entrega");
+        btnBuscarFormasEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfNumFatiasActionPerformed(evt);
+                btnBuscarFormasEntregaActionPerformed(evt);
             }
         });
 
@@ -187,71 +189,79 @@ public class VisualizarEntregas extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCadastros);
 
-        menuPedidos.setText("Visualizar ↓");
-        menuPedidos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        menuPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuPedidos7.setText("Visualizar ↓");
+        menuPedidos7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuPedidos7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPedidosActionPerformed(evt);
+                menuPedidos7ActionPerformed(evt);
             }
         });
 
-        menuItemVisualizarClientes.setText("Visualizar Clientes");
-        menuItemVisualizarClientes.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarClientes6.setText("Visualizar Clientes");
+        menuItemVisualizarClientes6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarClientesActionPerformed(evt);
+                menuItemVisualizarClientes6ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarClientes);
+        menuPedidos7.add(menuItemVisualizarClientes6);
 
-        menuItemVisualizarEntregadores.setText("Visualizar Entregadores");
-        menuItemVisualizarEntregadores.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarEntregadores1.setText("Visualizar Entregadores");
+        menuItemVisualizarEntregadores1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarEntregadoresActionPerformed(evt);
+                menuItemVisualizarEntregadores1ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarEntregadores);
+        menuPedidos7.add(menuItemVisualizarEntregadores1);
 
-        menuItemVisualizarFuncionarios.setText("Visualizar Funcionários");
-        menuItemVisualizarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarFuncionarios1.setText("Visualizar Funcionários");
+        menuItemVisualizarFuncionarios1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarFuncionariosActionPerformed(evt);
+                menuItemVisualizarFuncionarios1ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarFuncionarios);
+        menuPedidos7.add(menuItemVisualizarFuncionarios1);
 
-        menuItemVisualizarPromocao.setText("Visualizar Promoções");
-        menuItemVisualizarPromocao.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarPromocao1.setText("Visualizar Promoções");
+        menuItemVisualizarPromocao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarPromocaoActionPerformed(evt);
+                menuItemVisualizarPromocao1ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarPromocao);
+        menuPedidos7.add(menuItemVisualizarPromocao1);
 
-        menuItemVisualizarPedidos.setText("Visualizar Pedidos");
-        menuItemVisualizarPedidos.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarPedidos2.setText("Visualizar Pedidos");
+        menuItemVisualizarPedidos2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarPedidosActionPerformed(evt);
+                menuItemVisualizarPedidos2ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarPedidos);
+        menuPedidos7.add(menuItemVisualizarPedidos2);
 
-        menuItemVisualizarFormaEntrega.setText("Visualizar Formas de Entrega");
-        menuItemVisualizarFormaEntrega.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVisualizarFormaEntrega1.setText("Visualizar Formas de Entrega");
+        menuItemVisualizarFormaEntrega1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarFormaEntregaActionPerformed(evt);
+                menuItemVisualizarFormaEntrega1ActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarFormaEntrega);
+        menuPedidos7.add(menuItemVisualizarFormaEntrega1);
 
-        menuItemVisualizarTamanho.setText("Visualizar Tamanhos");
-        menuItemVisualizarTamanho.addActionListener(new java.awt.event.ActionListener() {
+        menuItemSabores.setText("Visualizar Sabores");
+        menuItemSabores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVisualizarTamanhoActionPerformed(evt);
+                menuItemSaboresActionPerformed(evt);
             }
         });
-        menuPedidos.add(menuItemVisualizarTamanho);
+        menuPedidos7.add(menuItemSabores);
 
-        jMenuBar1.add(menuPedidos);
+        menuItemVisualizarTamanho1.setText("Visualizar Tamanhos");
+        menuItemVisualizarTamanho1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarTamanho1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarTamanho1);
+
+        jMenuBar1.add(menuPedidos7);
 
         setJMenuBar(jMenuBar1);
 
@@ -276,10 +286,6 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtfNumFatias))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -290,7 +296,8 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(txtfTamanho)
-                                                .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnBuscarFormasEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator2)
@@ -302,17 +309,20 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btnRelatorio))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRelatorio)
+                            .addComponent(btnBuscarFormasEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
+                                .addGap(27, 27, 27)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
                                 .addComponent(jLabel2)
                                 .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,13 +332,9 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(txtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
+                                .addGap(31, 31, 31)
                                 .addComponent(checkAtivo)
-                                .addGap(124, 124, 124)
+                                .addGap(170, 170, 170)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -355,56 +361,16 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemCadastrarClienteActionPerformed
 
-    private void menuItemVisualizarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidosActionPerformed
-       VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
-       visualizarPedidos.setVisible(true);
-       dispose();
-    }//GEN-LAST:event_menuItemVisualizarPedidosActionPerformed
-
     private void menuItemCadastrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPedidosActionPerformed
         AdicionarPedido novopedido = new AdicionarPedido();
         novopedido.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemCadastrarPedidosActionPerformed
 
-    private void menuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuPedidosActionPerformed
-
-    private void menuItemVisualizarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadoresActionPerformed
-        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
-        visualizarEntregadores.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemVisualizarEntregadoresActionPerformed
-
-    private void menuItemVisualizarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanhoActionPerformed
-        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
-        visualizarTamanho.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemVisualizarTamanhoActionPerformed
-
-    private void menuItemVisualizarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientesActionPerformed
-       VisualizarClientes visualizarClientes = new VisualizarClientes();
-       visualizarClientes.setVisible(true);
-       dispose();
-    }//GEN-LAST:event_menuItemVisualizarClientesActionPerformed
-
-    private void menuItemVisualizarFormaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntregaActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
-        visualizarEntregas.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemVisualizarFormaEntregaActionPerformed
-
-    private void menuItemVisualizarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionariosActionPerformed
-        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
-        visualizarFuncionarios.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemVisualizarFuncionariosActionPerformed
-
     private void menuItemCadastrarEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarEntregadorActionPerformed
-       AdicionarEntregador adicionarEntregador = new AdicionarEntregador();
-       adicionarEntregador.setVisible(true);
-       dispose();
+        AdicionarEntregador adicionarEntregador = new AdicionarEntregador();
+        adicionarEntregador.setVisible(true);
+        dispose();
     }//GEN-LAST:event_menuItemCadastrarEntregadorActionPerformed
 
     private void menuItemCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarFuncionarioActionPerformed
@@ -412,16 +378,6 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         adicionarFuncionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemCadastrarFuncionarioActionPerformed
-
-    private void txtfNumFatiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNumFatiasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfNumFatiasActionPerformed
-
-    private void menuItemVisualizarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocaoActionPerformed
-        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
-        visualizarPromocao.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_menuItemVisualizarPromocaoActionPerformed
 
     private void menuItemCadastrarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarPromocaoActionPerformed
         AdicionarPromocao adicionarPromocao = new AdicionarPromocao();
@@ -434,6 +390,78 @@ public class VisualizarEntregas extends javax.swing.JFrame {
         adicionarSabor.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
+
+    private void btnBuscarFormasEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFormasEntregaActionPerformed
+        String colunas[] = {"Modalidade", "Preço", "Ativo"};
+        String dados[][] = {{"Retirada", "0", "Sim"},
+        {"Entrega", "8,00", "Sim"},};
+
+        DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
+
+        tabelaEntregas.setModel(tabela);
+    }//GEN-LAST:event_btnBuscarFormasEntregaActionPerformed
+
+    private void menuItemVisualizarClientes6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientes6ActionPerformed
+        VisualizarClientes visualizarClientes = new VisualizarClientes();
+        visualizarClientes.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarClientes6ActionPerformed
+
+    private void menuItemVisualizarEntregadores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadores1ActionPerformed
+        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
+        visualizarEntregadores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarEntregadores1ActionPerformed
+
+    private void menuItemVisualizarFuncionarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionarios1ActionPerformed
+        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
+        visualizarFuncionarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFuncionarios1ActionPerformed
+
+    private void menuItemVisualizarPromocao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocao1ActionPerformed
+        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
+        visualizarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPromocao1ActionPerformed
+
+    private void menuItemVisualizarPedidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidos2ActionPerformed
+        VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
+        visualizarPedidos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
+
+    private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
+        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        visualizarEntregas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
+
+    private void menuItemSaboresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaboresActionPerformed
+        VisualizarSabor visualizarSabor = new VisualizarSabor();
+        visualizarSabor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemSaboresActionPerformed
+
+    private void menuItemVisualizarTamanho1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanho1ActionPerformed
+        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
+        visualizarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarTamanho1ActionPerformed
+
+    private void menuPedidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPedidos7ActionPerformed
+
+    private void preencheEntregas() {
+        String colunas[] = {"Modalidade", "Preço", "Ativo"};
+        String dados[][] = {{"Retirada", "0", "Sim"},
+        {"Entrega", "8,00", "Sim"},};
+
+        DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
+
+        tabelaEntregas.setModel(tabela);
+    }
 
     /**
      * @param args the command line arguments
@@ -471,6 +499,7 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarFormasEntrega;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnRelatorio;
@@ -479,12 +508,10 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -492,15 +519,16 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadastrarPedidos;
     private javax.swing.JMenuItem menuItemCadastrarPromocao;
     private javax.swing.JMenuItem menuItemCadastrarSabor;
-    private javax.swing.JMenuItem menuItemVisualizarClientes;
-    private javax.swing.JMenuItem menuItemVisualizarEntregadores;
-    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega;
-    private javax.swing.JMenuItem menuItemVisualizarFuncionarios;
-    private javax.swing.JMenuItem menuItemVisualizarPedidos;
-    private javax.swing.JMenuItem menuItemVisualizarPromocao;
-    private javax.swing.JMenuItem menuItemVisualizarTamanho;
-    private javax.swing.JMenu menuPedidos;
-    private javax.swing.JTextField txtfNumFatias;
+    private javax.swing.JMenuItem menuItemSabores;
+    private javax.swing.JMenuItem menuItemVisualizarClientes6;
+    private javax.swing.JMenuItem menuItemVisualizarEntregadores1;
+    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega1;
+    private javax.swing.JMenuItem menuItemVisualizarFuncionarios1;
+    private javax.swing.JMenuItem menuItemVisualizarPedidos2;
+    private javax.swing.JMenuItem menuItemVisualizarPromocao1;
+    private javax.swing.JMenuItem menuItemVisualizarTamanho1;
+    private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaEntregas;
     private javax.swing.JTextField txtfPreco;
     private javax.swing.JTextField txtfTamanho;
     // End of variables declaration//GEN-END:variables

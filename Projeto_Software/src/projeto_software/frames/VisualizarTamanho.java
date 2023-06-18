@@ -4,6 +4,8 @@
  */
 package projeto_software.frames;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
@@ -27,7 +29,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaTamanhos = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         btnRelatorio = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -52,18 +54,19 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         menuItemCadastrarPromocao = new javax.swing.JMenuItem();
         menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos1 = new javax.swing.JMenuItem();
-        menuPedidos1 = new javax.swing.JMenu();
-        menuItemVisualizarClientes = new javax.swing.JMenuItem();
-        menuItemVisualizarEntregadores = new javax.swing.JMenuItem();
-        menuItemVisualizarFuncionarios = new javax.swing.JMenuItem();
-        menuItemVisualizarPromocao = new javax.swing.JMenuItem();
-        menuItemVisualizarPedidos1 = new javax.swing.JMenuItem();
-        menuItemVisualizarFormaEntrega = new javax.swing.JMenuItem();
-        menuItemVisualizarTamanho = new javax.swing.JMenuItem();
+        menuPedidos7 = new javax.swing.JMenu();
+        menuItemVisualizarClientes6 = new javax.swing.JMenuItem();
+        menuItemVisualizarEntregadores1 = new javax.swing.JMenuItem();
+        menuItemVisualizarFuncionarios1 = new javax.swing.JMenuItem();
+        menuItemVisualizarPromocao1 = new javax.swing.JMenuItem();
+        menuItemVisualizarPedidos2 = new javax.swing.JMenuItem();
+        menuItemVisualizarFormaEntrega1 = new javax.swing.JMenuItem();
+        menuItemSabores = new javax.swing.JMenuItem();
+        menuItemVisualizarTamanho1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaTamanhos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +78,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -89,7 +92,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaTamanhos);
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,31 +200,79 @@ public class VisualizarTamanho extends javax.swing.JFrame {
 
         jMenuBar1.add(menuCadastros1);
 
-        menuPedidos1.setText("Visualizar ↓");
-        menuPedidos1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuPedidos7.setText("Visualizar ↓");
+        menuPedidos7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        menuPedidos7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPedidos7ActionPerformed(evt);
+            }
+        });
 
-        menuItemVisualizarClientes.setText("Visualizar Clientes");
-        menuPedidos1.add(menuItemVisualizarClientes);
+        menuItemVisualizarClientes6.setText("Visualizar Clientes");
+        menuItemVisualizarClientes6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarClientes6ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarClientes6);
 
-        menuItemVisualizarEntregadores.setText("Visualizar Entregadores");
-        menuPedidos1.add(menuItemVisualizarEntregadores);
+        menuItemVisualizarEntregadores1.setText("Visualizar Entregadores");
+        menuItemVisualizarEntregadores1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarEntregadores1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarEntregadores1);
 
-        menuItemVisualizarFuncionarios.setText("Visualizar Funcionários");
-        menuPedidos1.add(menuItemVisualizarFuncionarios);
+        menuItemVisualizarFuncionarios1.setText("Visualizar Funcionários");
+        menuItemVisualizarFuncionarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFuncionarios1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarFuncionarios1);
 
-        menuItemVisualizarPromocao.setText("Visualizar Promoções");
-        menuPedidos1.add(menuItemVisualizarPromocao);
+        menuItemVisualizarPromocao1.setText("Visualizar Promoções");
+        menuItemVisualizarPromocao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPromocao1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarPromocao1);
 
-        menuItemVisualizarPedidos1.setText("Visualizar Pedidos");
-        menuPedidos1.add(menuItemVisualizarPedidos1);
+        menuItemVisualizarPedidos2.setText("Visualizar Pedidos");
+        menuItemVisualizarPedidos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarPedidos2ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarPedidos2);
 
-        menuItemVisualizarFormaEntrega.setText("Visualizar Formas de Entrega");
-        menuPedidos1.add(menuItemVisualizarFormaEntrega);
+        menuItemVisualizarFormaEntrega1.setText("Visualizar Formas de Entrega");
+        menuItemVisualizarFormaEntrega1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarFormaEntrega1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarFormaEntrega1);
 
-        menuItemVisualizarTamanho.setText("Visualizar Tamanhos");
-        menuPedidos1.add(menuItemVisualizarTamanho);
+        menuItemSabores.setText("Visualizar Sabores");
+        menuItemSabores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSaboresActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemSabores);
 
-        jMenuBar1.add(menuPedidos1);
+        menuItemVisualizarTamanho1.setText("Visualizar Tamanhos");
+        menuItemVisualizarTamanho1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVisualizarTamanho1ActionPerformed(evt);
+            }
+        });
+        menuPedidos7.add(menuItemVisualizarTamanho1);
+
+        jMenuBar1.add(menuPedidos7);
 
         setJMenuBar(jMenuBar1);
 
@@ -248,23 +299,22 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                                         .addComponent(btnBuscarTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnAdicionarTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtfNumFatias))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtfModalidade)
-                                                .addComponent(txtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtfNumFatias))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtfModalidade)
+                                            .addComponent(txtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(263, 263, 263))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator2)
@@ -371,8 +421,70 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarTamanhoActionPerformed
 
     private void btnBuscarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTamanhoActionPerformed
-        String colunas[] =  {""};
+        String colunas[] =  {"Tamanho", "Preço", "Número de fatias", "Ativo"};
+        String dados[][]={{"Pequena", "20,99", "4", "Sim"},
+                            {"Média", "30,99", "6", "Sim"},
+                            {"Grande", "40,99", "8", "Sim"},
+                            {"Gigante", "50,99", "12","Não"}
+        };
+        
+        DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
+        
+        tabelaTamanhos.setModel(tabela);
+        
     }//GEN-LAST:event_btnBuscarTamanhoActionPerformed
+
+    private void menuItemVisualizarClientes6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientes6ActionPerformed
+        VisualizarClientes visualizarClientes = new VisualizarClientes();
+        visualizarClientes.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarClientes6ActionPerformed
+
+    private void menuItemVisualizarEntregadores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarEntregadores1ActionPerformed
+        VisualizarEntregadores visualizarEntregadores = new VisualizarEntregadores();
+        visualizarEntregadores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarEntregadores1ActionPerformed
+
+    private void menuItemVisualizarFuncionarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFuncionarios1ActionPerformed
+        VisualizarFuncionarios visualizarFuncionarios = new VisualizarFuncionarios();
+        visualizarFuncionarios.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFuncionarios1ActionPerformed
+
+    private void menuItemVisualizarPromocao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPromocao1ActionPerformed
+        VisualizarPromocao visualizarPromocao = new VisualizarPromocao();
+        visualizarPromocao.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPromocao1ActionPerformed
+
+    private void menuItemVisualizarPedidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarPedidos2ActionPerformed
+        VisualizarPedidos visualizarPedidos = new VisualizarPedidos();
+        visualizarPedidos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
+
+    private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
+        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        visualizarEntregas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
+
+    private void menuItemSaboresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSaboresActionPerformed
+        VisualizarSabor visualizarSabor = new VisualizarSabor();
+        visualizarSabor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemSaboresActionPerformed
+
+    private void menuItemVisualizarTamanho1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarTamanho1ActionPerformed
+        VisualizarTamanho visualizarTamanho = new VisualizarTamanho();
+        visualizarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemVisualizarTamanho1ActionPerformed
+
+    private void menuPedidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,7 +537,6 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -433,14 +544,16 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadastrarPedidos1;
     private javax.swing.JMenuItem menuItemCadastrarPromocao;
     private javax.swing.JMenuItem menuItemCadastrarSabor;
-    private javax.swing.JMenuItem menuItemVisualizarClientes;
-    private javax.swing.JMenuItem menuItemVisualizarEntregadores;
-    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega;
-    private javax.swing.JMenuItem menuItemVisualizarFuncionarios;
-    private javax.swing.JMenuItem menuItemVisualizarPedidos1;
-    private javax.swing.JMenuItem menuItemVisualizarPromocao;
-    private javax.swing.JMenuItem menuItemVisualizarTamanho;
-    private javax.swing.JMenu menuPedidos1;
+    private javax.swing.JMenuItem menuItemSabores;
+    private javax.swing.JMenuItem menuItemVisualizarClientes6;
+    private javax.swing.JMenuItem menuItemVisualizarEntregadores1;
+    private javax.swing.JMenuItem menuItemVisualizarFormaEntrega1;
+    private javax.swing.JMenuItem menuItemVisualizarFuncionarios1;
+    private javax.swing.JMenuItem menuItemVisualizarPedidos2;
+    private javax.swing.JMenuItem menuItemVisualizarPromocao1;
+    private javax.swing.JMenuItem menuItemVisualizarTamanho1;
+    private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaTamanhos;
     private javax.swing.JTextField txtfModalidade;
     private javax.swing.JTextField txtfNumFatias;
     private javax.swing.JTextField txtfValor;

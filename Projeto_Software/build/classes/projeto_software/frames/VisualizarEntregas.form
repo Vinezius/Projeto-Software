@@ -65,7 +65,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuPedidos">
+        <Menu class="javax.swing.JMenu" name="menuPedidos7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Visualizar &#x2193;"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -73,63 +73,71 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPedidosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPedidos7ActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarClientes">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarClientes6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Clientes"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarClientesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarClientes6ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarEntregadores">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarEntregadores1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Entregadores"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarEntregadoresActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarEntregadores1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFuncionarios">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFuncionarios1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Funcion&#xe1;rios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFuncionariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFuncionarios1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPromocao">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPromocao1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Promo&#xe7;&#xf5;es"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPromocaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPromocao1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPedidos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarPedidos2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Pedidos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPedidosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarPedidos2ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFormaEntrega">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarFormaEntrega1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Formas de Entrega"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFormaEntregaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarFormaEntrega1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarTamanho">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemSabores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar Sabores"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemSaboresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemVisualizarTamanho1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualizar Tamanhos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarTamanhoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemVisualizarTamanho1ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -177,11 +185,6 @@
                                   <Component id="jScrollPane2" alignment="0" min="-2" pref="873" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtfNumFatias" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="btnExcluir" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnEditar" min="-2" pref="91" max="-2" attributes="0"/>
@@ -198,6 +201,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <Component id="btnBuscarFormasEntrega" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -217,18 +221,22 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="btnRelatorio" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnRelatorio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBuscarFormasEntrega" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="194" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="143" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -240,14 +248,9 @@
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtfPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtfNumFatias" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="checkAtivo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnExcluir" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                                   <Component id="btnEditar" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
@@ -294,23 +297,17 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable2">
+        <Component class="javax.swing.JTable" name="tabelaEntregas">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="false" title="Tamanho" type="java.lang.String"/>
+              <Table columnCount="3" rowCount="4">
+                <Column editable="false" title="Modalidade" type="java.lang.String"/>
                 <Column editable="false" title="Pre&#xe7;o" type="java.lang.String"/>
-                <Column editable="false" title="N&#xfa;mero de fatias" type="java.lang.String"/>
                 <Column editable="false" title="Ativo" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -337,12 +334,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Para editar um tamanho, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira o tamanho e clique em excluir."/>
+        <Property name="text" type="java.lang.String" value="Para editar uma forma de entrega, preencha as informa&#xe7;&#xf5;es abaixo e clique em editar. Para excluir apenas insira apenas a Modalidade e clique em excluir."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tamanho"/>
+        <Property name="text" type="java.lang.String" value="Modalidade:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfTamanho">
@@ -390,14 +387,12 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JButton" name="btnBuscarFormasEntrega">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xba; de fatias:"/>
+        <Property name="text" type="java.lang.String" value="Buscar Formas de Entrega"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtfNumFatias">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfNumFatiasActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarFormasEntregaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
