@@ -4,6 +4,9 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -114,6 +117,11 @@ public class VisualizarClientes extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         btnBuscarClientes.setText("Buscar Clientes");
+        btnBuscarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClientesActionPerformed(evt);
+            }
+        });
 
         btnNovoCliente.setText("Cadastrar novo cliente");
         btnNovoCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -452,7 +460,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
@@ -472,6 +480,19 @@ public class VisualizarClientes extends javax.swing.JFrame {
     private void menuPedidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
+
+    private void btnBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClientesActionPerformed
+
+        try {
+            JSONObject json = new JSONObject();
+            json.put("operacao", 4);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
     /**
      * @param args the command line arguments

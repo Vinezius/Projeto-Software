@@ -4,6 +4,9 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -63,6 +66,11 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBuscarPedidos.setText("Buscar Funcionarios");
+        btnBuscarPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPedidosActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -442,7 +450,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
@@ -462,6 +470,17 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     private void menuPedidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
+
+    private void btnBuscarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidosActionPerformed
+        try {
+            JSONObject json = new JSONObject();
+            json.put("operacao", 28);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarPedidosActionPerformed
 
     /**
      * @param args the command line arguments

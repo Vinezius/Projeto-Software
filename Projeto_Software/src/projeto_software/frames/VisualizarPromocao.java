@@ -4,6 +4,9 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -105,6 +108,11 @@ public class VisualizarPromocao extends javax.swing.JFrame {
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnBuscarPromocoes.setText("Buscar Promoções");
+        btnBuscarPromocoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPromocoesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Sistema de Controle de Pizzaria - Visualizar Promoções");
@@ -454,7 +462,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntregaActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntregaActionPerformed
@@ -474,6 +482,17 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     private void menuPedidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos2ActionPerformed
+
+    private void btnBuscarPromocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPromocoesActionPerformed
+        try {
+            JSONObject json = new JSONObject();
+            json.put("operacao", 22);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarPromocoesActionPerformed
 
     /**
      * @param args the command line arguments

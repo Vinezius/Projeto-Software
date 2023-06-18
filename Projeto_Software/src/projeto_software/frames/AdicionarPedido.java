@@ -672,7 +672,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed

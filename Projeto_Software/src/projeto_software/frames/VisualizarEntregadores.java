@@ -4,6 +4,9 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -102,6 +105,11 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
         }
 
         btnBuscarEntregadores.setText("Buscar Entregadores");
+        btnBuscarEntregadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarEntregadoresActionPerformed(evt);
+            }
+        });
 
         btnRelatorio.setText("Relatório");
         btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -456,7 +464,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
@@ -476,6 +484,17 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     private void menuPedidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPedidos7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
+
+    private void btnBuscarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadoresActionPerformed
+        try {
+            JSONObject json = new JSONObject();
+            json.put("operacao", 18);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+    }//GEN-LAST:event_btnBuscarEntregadoresActionPerformed
 
     /**
      * @param args the command line arguments

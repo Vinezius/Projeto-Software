@@ -329,7 +329,7 @@ public class AdicionarTamanho extends javax.swing.JFrame {
             json.put("tamanho", tamanho);
             json.put("preco", preco);
             json.put("numFatias", numFatias);
-            json.put("operacao", 15);
+            json.put("operacao", 29);
 
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
@@ -414,7 +414,7 @@ public class AdicionarTamanho extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed

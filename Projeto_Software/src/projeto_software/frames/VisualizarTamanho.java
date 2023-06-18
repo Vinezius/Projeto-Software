@@ -4,7 +4,9 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONObject;
 
 /**
  *
@@ -432,6 +434,17 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         
         tabelaTamanhos.setModel(tabela);
         
+        
+         try {
+             JSONObject json = new JSONObject();
+            json.put("operacao", 32);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
     }//GEN-LAST:event_btnBuscarTamanhoActionPerformed
 
     private void menuItemVisualizarClientes6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientes6ActionPerformed
@@ -465,7 +478,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed

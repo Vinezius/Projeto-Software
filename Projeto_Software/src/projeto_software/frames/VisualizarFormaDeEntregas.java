@@ -4,18 +4,20 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONObject;
 
 /**
  *
  * @author User
  */
-public class VisualizarEntregas extends javax.swing.JFrame {
+public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
 
     /**
      * Creates new form VisualizarEntregas
      */
-    public VisualizarEntregas() {
+    public VisualizarFormaDeEntregas() {
         initComponents();
         preencheEntregas();
     }
@@ -392,6 +394,16 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
 
     private void btnBuscarFormasEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFormasEntregaActionPerformed
+         try {
+            JSONObject json = new JSONObject();
+            json.put("operacao", 34);
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
         String colunas[] = {"Modalidade", "Preço", "Ativo"};
         String dados[][] = {{"Retirada", "0", "Sim"},
         {"Entrega", "8,00", "Sim"},};
@@ -432,7 +444,7 @@ public class VisualizarEntregas extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemVisualizarPedidos2ActionPerformed
 
     private void menuItemVisualizarFormaEntrega1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarFormaEntrega1ActionPerformed
-        VisualizarEntregas visualizarEntregas = new VisualizarEntregas();
+        VisualizarFormaDeEntregas visualizarEntregas = new VisualizarFormaDeEntregas();
         visualizarEntregas.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuItemVisualizarFormaEntrega1ActionPerformed
@@ -480,20 +492,21 @@ public class VisualizarEntregas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarFormaDeEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarFormaDeEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarFormaDeEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VisualizarEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisualizarFormaDeEntregas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualizarEntregas().setVisible(true);
+                new VisualizarFormaDeEntregas().setVisible(true);
             }
         });
     }
