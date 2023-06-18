@@ -181,7 +181,7 @@
                               <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCancelar" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="btnLimpar" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                                   <Component id="checkAtivo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -195,7 +195,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtfPromoção" alignment="0" pref="170" max="32767" attributes="0"/>
+                                          <Component id="txtfPromocao" alignment="0" pref="170" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                                               <Component id="btnSalvar" min="-2" pref="71" max="-2" attributes="0"/>
@@ -232,7 +232,7 @@
                               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtfPromoção" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtfPromocao" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -248,7 +248,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCancelar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="btnLimpar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   <Component id="btnSalvar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -304,16 +304,16 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfPromo&#xe7;&#xe3;o">
+    <Component class="javax.swing.JTextField" name="txtfPromocao">
     </Component>
     <Component class="javax.swing.JTextField" name="txtfObservacao">
     </Component>
-    <Component class="javax.swing.JButton" name="btnCancelar">
+    <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalvar">

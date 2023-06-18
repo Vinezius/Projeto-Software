@@ -4,6 +4,10 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -15,6 +19,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
      */
     public AdicionarPedido() {
         initComponents();
+        definirNumFatias();
     }
 
     /**
@@ -35,7 +40,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         checkCadastrado = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
-        txtfDataHoraPedido = new javax.swing.JTextField();
+        txtfDataPedido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         comboEntrega = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -47,9 +52,9 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtfPlacaVeiculo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtfEntregador = new javax.swing.JComboBox<>();
+        comboEntregador = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        comboCupom = new javax.swing.JComboBox<>();
+        comboPromocao = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtfQuantidade = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -68,8 +73,10 @@ public class AdicionarPedido extends javax.swing.JFrame {
         txtfDesconto = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtfValorFinal = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        txtfHoraPedido = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros1 = new javax.swing.JMenu();
         menuItemCadastrarCliente = new javax.swing.JMenuItem();
@@ -121,7 +128,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setText("Data e hora do Pedido");
+        jLabel3.setText("Data do Pedido");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Modalidade Entrega");
@@ -160,12 +167,12 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel8.setText("Entregador");
 
-        txtfEntregador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEntregador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel9.setText("Promoção");
 
-        comboCupom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPromocao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel10.setText("Quantidade");
@@ -179,6 +186,21 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel12.setText("Tamanho");
 
         comboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTamanho.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                comboTamanhoFocusGained(evt);
+            }
+        });
+        comboTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTamanhoActionPerformed(evt);
+            }
+        });
+        comboTamanho.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                comboTamanhoPropertyChange(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel13.setText("Número de fatias");
@@ -199,19 +221,29 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel17.setText("Desconto:");
 
+        txtfDesconto.setEditable(false);
+
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel18.setText("Valor Total:");
 
         txtfValorFinal.setEditable(false);
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnLimparActionPerformed(evt);
             }
         });
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel19.setText("Hora do Pedido");
 
         menuCadastros1.setText("Cadastros ↓");
         menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -371,50 +403,59 @@ public class AdicionarPedido extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel6))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(checkCadastrado))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(12, 12, 12)
-                                                    .addComponent(jLabel7)))))
-                                    .addGap(28, 28, 28)
+                                            .addComponent(txtfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(checkCadastrado)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel8)
-                                        .addComponent(txtfDataHoraPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(28, 28, 28)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(txtfDataPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(27, 27, 27)
+                                            .addComponent(jLabel7))))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(comboFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtfPlacaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel11))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addGap(117, 117, 117)
+                                            .addComponent(jLabel11)
+                                            .addGap(148, 148, 148))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(comboEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel4))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel6)
+                                                .addComponent(comboFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel12)
-                                        .addComponent(txtfEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(46, 46, 46)
+                                        .addComponent(txtfPlacaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel8)
+                                    .addComponent(comboEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(txtfHoraPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtfNumFatias, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(comboCupom, javax.swing.GroupLayout.Alignment.LEADING, 0, 169, Short.MAX_VALUE)
-                                        .addComponent(comboEntrega, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(jLabel13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtfEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                    .addComponent(txtfAcrescimo)))))
+                            .addComponent(comboPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel5)
+                                .addComponent(txtfEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                .addComponent(txtfAcrescimo))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -425,7 +466,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel17)
                             .addComponent(jLabel18)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -459,27 +500,34 @@ public class AdicionarPedido extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(checkCadastrado)
-                            .addComponent(txtfDataHoraPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfDataPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfHoraPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(15, 15, 15)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtfPlacaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfEntregador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboCupom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -513,7 +561,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
                             .addComponent(txtfValorFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(103, 103, 103))))
         );
@@ -541,9 +589,15 @@ public class AdicionarPedido extends javax.swing.JFrame {
         System.out.println(teste);
     }//GEN-LAST:event_txtfNomeClienteKeyTyped
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtfNomeCliente.setText("");
+        txtfDataPedido.setText("");
+        txtfHoraPedido.setText("");
+        txtfEndereco.setText("");
+        txtfPlacaVeiculo.setText("");
+        txtfQuantidade.setText("");
+        txtfAcrescimo.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
         Relatorio relatorio = new Relatorio();
@@ -639,6 +693,88 @@ public class AdicionarPedido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        String nomeCliente = txtfNomeCliente.getText();
+        String dataPedido = txtfDataPedido.getText();
+        String horaPedido = txtfHoraPedido.getText();
+        String modalidadeEntrega = comboEntrega.getSelectedItem() + "";
+        String endereco = txtfEndereco.getText();
+        String funcionario = comboFuncionario.getSelectedItem() + "";
+        String placa = txtfPlacaVeiculo.getText();
+        String entregador = comboEntregador.getSelectedItem() + "";
+        String promocao = comboPromocao.getSelectedItem() + "";
+        String quantidade = txtfQuantidade.getText();
+        String sabor = comboSabor.getSelectedItem() + "";
+        String tamanho = comboTamanho.getSelectedItem() + "";
+        String acrescimo = txtfAcrescimo.getText();
+        
+          try {
+            JSONObject json = new JSONObject();
+            json.put("nome", nomeCliente);
+            json.put("dataPedido", dataPedido);
+            json.put("horaPedido", horaPedido);
+            json.put("modalidadeEntrega", modalidadeEntrega);
+            json.put("endereco", endereco);
+            json.put("funcionario", funcionario);
+            json.put("placa", placa);
+            json.put("entregador", entregador);
+            json.put("promocao", promocao);
+            json.put("quantidade", quantidade);
+            json.put("sabor", sabor);
+            json.put("tamanho", tamanho);
+            json.put("acrescimo", acrescimo);
+            json.put("operacao", 12);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Promoção cadastrada com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar promoção!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
+    private void comboTamanhoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboTamanhoPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTamanhoPropertyChange
+
+    private void comboTamanhoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboTamanhoFocusGained
+
+    }//GEN-LAST:event_comboTamanhoFocusGained
+
+    public void definirNumFatias() {
+
+        String tamanho = comboTamanho.getSelectedItem() + "";
+
+        switch (tamanho) {
+            case "PEQUENA" ->
+                txtfNumFatias.setText("4");
+
+            case "MÉDIA" ->
+                txtfNumFatias.setText("6");
+            case "GRANDE" ->
+                txtfNumFatias.setText("8");
+            default ->
+                txtfNumFatias.setText("");
+
+        }
+    }
+
+    private void comboTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTamanhoActionPerformed
+
+        definirNumFatias();
+
+    }//GEN-LAST:event_comboTamanhoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -677,15 +813,16 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarDados;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRelatorio;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox checkCadastrado;
-    private javax.swing.JComboBox<String> comboCupom;
     private javax.swing.JComboBox<String> comboEntrega;
+    private javax.swing.JComboBox<String> comboEntregador;
     private javax.swing.JComboBox<String> comboFuncionario;
+    private javax.swing.JComboBox<String> comboPromocao;
     private javax.swing.JComboBox<String> comboSabor;
     private javax.swing.JComboBox<String> comboTamanho;
     private javax.swing.JLabel jLabel1;
@@ -698,6 +835,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -726,10 +864,10 @@ public class AdicionarPedido extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
     private javax.swing.JTextField txtfAcrescimo;
-    private javax.swing.JTextField txtfDataHoraPedido;
+    private javax.swing.JTextField txtfDataPedido;
     private javax.swing.JTextField txtfDesconto;
     private javax.swing.JTextField txtfEndereco;
-    private javax.swing.JComboBox<String> txtfEntregador;
+    private javax.swing.JTextField txtfHoraPedido;
     private javax.swing.JTextField txtfNomeCliente;
     private javax.swing.JTextField txtfNumFatias;
     private javax.swing.JTextField txtfObservacoes;

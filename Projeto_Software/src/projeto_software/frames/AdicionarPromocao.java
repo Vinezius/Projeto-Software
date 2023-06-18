@@ -4,6 +4,10 @@
  */
 package projeto_software.frames;
 
+import helpers.ConexaoCliente;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
+
 /**
  *
  * @author User
@@ -30,9 +34,9 @@ public class AdicionarPromocao extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btnRelatorio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        txtfPromoção = new javax.swing.JTextField();
+        txtfPromocao = new javax.swing.JTextField();
         txtfObservacao = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         checkAtivo = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
@@ -77,10 +81,10 @@ public class AdicionarPromocao extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnCancelar.setText("Limpar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnLimparActionPerformed(evt);
             }
         });
 
@@ -255,7 +259,7 @@ public class AdicionarPromocao extends javax.swing.JFrame {
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(348, 348, 348)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(checkAtivo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
@@ -267,7 +271,7 @@ public class AdicionarPromocao extends javax.swing.JFrame {
                                             .addComponent(jLabel4))
                                         .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtfPromoção, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                            .addComponent(txtfPromocao, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(98, 98, 98)
                                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -293,7 +297,7 @@ public class AdicionarPromocao extends javax.swing.JFrame {
                                 .addGap(147, 147, 147)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
-                                    .addComponent(txtfPromoção, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtfPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
@@ -306,7 +310,7 @@ public class AdicionarPromocao extends javax.swing.JFrame {
                                     .addComponent(txtfObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(70, 70, 70)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -321,12 +325,39 @@ public class AdicionarPromocao extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        String promocao = txtfPromocao.getText();
+        String observacao = txtfObservacao.getText();
+        Boolean ativo = checkAtivo.isSelected();
+        String desconto = txtfDesconto.getText();
+
+        try {
+            JSONObject json = new JSONObject();
+            json.put("promocao", promocao);
+            json.put("observacao", observacao);
+            json.put("ativo", ativo);
+            json.put("desconto", desconto);
+            json.put("operacao", 19);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Promoção cadastrada com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar promoção!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void checkAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAtivoActionPerformed
@@ -457,7 +488,7 @@ public class AdicionarPromocao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRelatorio;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JCheckBox checkAtivo;
@@ -486,6 +517,6 @@ public class AdicionarPromocao extends javax.swing.JFrame {
     private javax.swing.JMenu menuPedidos7;
     private javax.swing.JTextField txtfDesconto;
     private javax.swing.JTextField txtfObservacao;
-    private javax.swing.JTextField txtfPromoção;
+    private javax.swing.JTextField txtfPromocao;
     // End of variables declaration//GEN-END:variables
 }
