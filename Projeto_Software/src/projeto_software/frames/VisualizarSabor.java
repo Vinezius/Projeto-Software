@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -33,7 +35,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
         btnRelatorio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaSabores = new javax.swing.JTable();
         btnAdicionarSabor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -78,7 +80,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaSabores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -90,7 +92,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -104,7 +106,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaSabores);
 
         btnAdicionarSabor.setText("Adicionar Sabor");
         btnAdicionarSabor.addActionListener(new java.awt.event.ActionListener() {
@@ -475,11 +477,48 @@ public class VisualizarSabor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarSaborActionPerformed
 
     private void btnBuscarSaboresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSaboresActionPerformed
-         try {
-             JSONObject json = new JSONObject();
+        String colunas[] = {"Sabor", "Observação", "Ativo"};
+        String dadosLimpeza[][] = {{"", "", ""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaSabores.setModel(model);
+
+        try {
+            JSONObject json = new JSONObject();
             json.put("operacao", 8);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArraySabores = (JSONArray) response.get("sabores");
+
+                for (int i = 0; i < jsonArraySabores.length(); i++) {
+                    String ativo = "";
+                    JSONObject entregador = jsonArraySabores.getJSONObject(i);
+                    String nomeSabor = entregador.getString("sabor");
+                    String observacao = entregador.getString("observacao");
+                    String ativoBinario = entregador.getString("ativo");
+
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {nomeSabor, nomeSabor, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaSabores.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -487,7 +526,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            
+
             String sabor = txtfSabor.getText();
             String observacao = txtfObservacao.getText();
             Boolean ativo = checkAtivo.isSelected();
@@ -514,8 +553,8 @@ public class VisualizarSabor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         try {
-            
+        try {
+
             String sabor = txtfSabor.getText();
             JSONObject json = new JSONObject();
             json.put("sabor", sabor);
@@ -587,7 +626,6 @@ public class VisualizarSabor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -604,6 +642,7 @@ public class VisualizarSabor extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao;
     private javax.swing.JMenuItem menuItemVisualizarTamanho;
     private javax.swing.JMenu menuPedidos1;
+    private javax.swing.JTable tabelaSabores;
     private javax.swing.JTextField txtfObservacao;
     private javax.swing.JTextField txtfSabor;
     // End of variables declaration//GEN-END:variables
