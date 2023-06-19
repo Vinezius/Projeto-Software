@@ -343,7 +343,7 @@ public class Controller extends Thread {
                         String json = "";
 
                         while (n.next()) {
-                            json += "{\"nome\": " + n.getString("nome") + ",\"cpf\":\"" + n.getString("cpf") + "\",\"data\":\"" + n.getString("data") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"telefone\":\"" + n.getString("telefone") + "\",\"ativo\":\"" + n.getString("ativo") + "\"}";
+                            json += "{\"nome\": " + n.getString("nome") + ",\"cpf\":\"" + n.getString("cpf") + "\",\"data\":\"" + n.getString("data") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"telefone\":\"" + n.getString("telefone") + "\",\"ativo\":\"" + n.getBoolean("ativo") + "\"}";
                         }
                         json = json.replace("}{", "},{");
 
@@ -910,7 +910,7 @@ public class Controller extends Thread {
                         String jsonModalidade = "";
 
                         while (n.next()) {
-                            jsonModalidade += "{\"modalidade\": " + n.getString("modalidade") + ",\"preco\":\"" + n.getString("preco") + ",\"ativo\":\"" + n.getString("ativo") + "\"}";
+                            jsonModalidade += "{\"modalidade\": " + n.getString("modalidade") + ",\"preco\":\"" + n.getString("preco") + "\",\"ativo\":\"" + n.getString("ativo") + "\"}";
                         }
                         jsonModalidade = jsonModalidade.replace("}{", "},{");
                         //MENSAGEM
