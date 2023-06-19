@@ -475,6 +475,11 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     private void btnBuscarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidosActionPerformed
+        String colunas[] ={"Nome", "Cargo", "Ativo"};
+        String data[][] = {{ "","","" }};
+        DefaultTableModel model = new DefaultTableModel(data,colunas);
+        tabelaFuncionarios.setModel(model);
+        
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 28);

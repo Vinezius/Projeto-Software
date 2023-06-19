@@ -962,6 +962,7 @@ public class Controller extends Thread {
 
                                 preparedStatement.setString(1, obj.getString("cargo"));
                                 preparedStatement.setBoolean(2, obj.getBoolean("ativo"));
+                                preparedStatement.setString(3, obj.getString("nome"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 26,\"status\": \"OK\"}");

@@ -7,6 +7,7 @@ package projeto_software.frames;
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -20,7 +21,6 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
      */
     public VisualizarFormaDeEntregas() {
         initComponents();
-        preencheEntregas();
     }
 
     /**
@@ -391,23 +391,56 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCadastrarSaborActionPerformed
 
     private void btnBuscarFormasEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFormasEntregaActionPerformed
-         try {
+
+        String colunas[] = {"Modalidade", "Preço", "Ativo"};
+        String dadosLimpeza[][] = {{"", "", ""}};
+
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+
+        tabelaEntregas.setModel(model);
+
+        try {
             JSONObject json = new JSONObject();
             json.put("operacao", 34);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayModalidades = (JSONArray) response.get("modalidades");
+
+                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
+                    String ativo = "";
+                    JSONObject modalidade = jsonArrayModalidades.getJSONObject(i);
+                    String modalidadeNome = modalidade.getString("modalidade");
+                    String preco = modalidade.getString("preco");
+                    String ativoBinario = modalidade.getString("ativo");
+
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {modalidadeNome, preco, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaEntregas.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        
-        String colunas[] = {"Modalidade", "Preço", "Ativo"};
-        String dados[][] = {{"Retirada", "0", "Sim"},
-        {"Entrega", "8,00", "Sim"},};
 
-        DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
 
-        tabelaEntregas.setModel(tabela);
     }//GEN-LAST:event_btnBuscarFormasEntregaActionPerformed
 
     private void menuItemVisualizarClientes6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVisualizarClientes6ActionPerformed
@@ -463,7 +496,7 @@ public class VisualizarFormaDeEntregas extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-            try {
+        try {
             String modalidade = txtfModalidade.getText();
             String preco = txtfPreco.getText();
             Boolean ativo = checkAtivo.isSelected();

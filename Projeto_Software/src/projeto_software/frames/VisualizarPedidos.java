@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -37,7 +39,7 @@ public class VisualizarPedidos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaPedidos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtfNumPedido = new javax.swing.JTextField();
@@ -93,28 +95,28 @@ public class VisualizarPedidos extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nº Pedido", "Status", "Data Hora Pedido", "Cliente", "Cadastrado", "Pedido"
+                "Nº Pedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Cadastrado", "Pedido"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -125,7 +127,7 @@ public class VisualizarPedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaPedidos);
 
         jLabel2.setText("Para editar um pedido, preencha as informações abaixo e clique em editar. Para excluir apenas insira o número do pedido e clique em excluir.");
 
@@ -506,18 +508,50 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     private void btnBuscarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidosActionPerformed
+        String colunas[] = {"NºPedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Cadastrado", "Pedido"};
+        String dadosLimpeza[][] = {{"", "", "","","","",""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaPedidos.setModel(model);
+
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 13);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayPedidos = (JSONArray) response.get("pedidos");
+
+                for (int i = 0; i < jsonArrayPedidos.length(); i++) {
+                    String ativo = "";
+                    JSONObject pedido = jsonArrayPedidos.getJSONObject(i);
+                    String numPedido = pedido.getString("numPedido");
+                    String statusPedido = pedido.getString("status");
+                    String data = pedido.getString("data");
+                    String hora = pedido.getString("hora");
+                    String cliente = pedido.getString("cliente");
+                    String cadastrado = pedido.getString("cadastrado");
+                    String descPedido = pedido.getString("pedido");
+                    String dados[] = {numPedido, statusPedido, data, hora, cliente, cadastrado, descPedido};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaPedidos.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnBuscarPedidosActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         try {
+        try {
             String statusPedido = txtfStatus.getText();
             String cliente = txtfNomeCliente.getText();
             String numPedido = txtfNumPedido.getText();
@@ -547,8 +581,8 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         try {
-            
+        try {
+
             String numPedido = txtfNumPedido.getText();
 
             JSONObject json = new JSONObject();
@@ -625,7 +659,6 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -642,6 +675,7 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaPedidos;
     private javax.swing.JTextField txtfDescPedido;
     private javax.swing.JTextField txtfNomeCliente;
     private javax.swing.JTextField txtfNumPedido;

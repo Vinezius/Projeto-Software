@@ -349,10 +349,10 @@ public class AdicionarEntregador extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
 
             }
         } catch (Exception e) {

@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -31,7 +33,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaEntregadores = new javax.swing.JTable();
         btnBuscarEntregadores = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
@@ -68,7 +70,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEntregadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,9 +102,9 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(2).setHeaderValue("Placa");
+        jScrollPane2.setViewportView(tabelaEntregadores);
+        if (tabelaEntregadores.getColumnModel().getColumnCount() > 0) {
+            tabelaEntregadores.getColumnModel().getColumn(2).setHeaderValue("Placa");
         }
 
         btnBuscarEntregadores.setText("Buscar Entregadores");
@@ -497,14 +499,53 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     private void btnBuscarEntregadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEntregadoresActionPerformed
+
+        String colunas[] = {"Nome", "CPF", "Placa", "Ativo"};
+        String dadosLimpeza[][] = {{"", "", ""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaEntregadores.setModel(model);
+
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 18);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayEntregadores = (JSONArray) response.get("entregadores");
+
+                for (int i = 0; i < jsonArrayEntregadores.length(); i++) {
+                    String ativo = "";
+                    JSONObject entregador = jsonArrayEntregadores.getJSONObject(i);
+                    String nome = entregador.getString("nome");
+                    String cpf = entregador.getString("cpf");
+                    String placa = entregador.getString("placa");
+                    String ativoBinario = entregador.getString("ativo");
+
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {nome, cpf, placa, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaEntregadores.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } 
+        }
     }//GEN-LAST:event_btnBuscarEntregadoresActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -516,13 +557,13 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
             json.put("operacao", 17);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
-            
+
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Excluído com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao excluir!");
 
             }
 
@@ -532,7 +573,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         try {
+        try {
             String cpf = txtfCpf.getText();
             String nome = txtfNome.getText();
             String placa = txtfPlaca.getText();
@@ -612,7 +653,6 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -629,6 +669,7 @@ public class VisualizarEntregadores extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaEntregadores;
     private javax.swing.JTextField txtfCpf;
     private javax.swing.JTextField txtfNome;
     private javax.swing.JTextField txtfPlaca;

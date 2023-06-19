@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -35,7 +37,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaClientes = new javax.swing.JTable();
         btnBuscarClientes = new javax.swing.JButton();
         btnNovoCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -83,7 +85,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Sistema de Controle de Pizzaria - Visualizar Clientes");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -115,7 +117,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaClientes);
 
         btnBuscarClientes.setText("Buscar Clientes");
         btnBuscarClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -494,10 +496,51 @@ public class VisualizarClientes extends javax.swing.JFrame {
 
     private void btnBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClientesActionPerformed
 
+        String colunas[] = {"Nome", "CPF", "Data Cadastro", "Endereço", "Telefone", "Ativo"};
+        String dadosLimpeza[][] = {{"", "", ""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaClientes.setModel(model);
+
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 4);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayClientes = (JSONArray) response.get("clientes");
+
+                for (int i = 0; i < jsonArrayClientes.length(); i++) {
+                    String ativo = "";
+                    JSONObject cliente = jsonArrayClientes.getJSONObject(i);
+                    String nome = cliente.getString("nome");
+                    String cpf = cliente.getString("cpf");
+                    String data = cliente.getString("data");
+                    String endereco = cliente.getString("endereco");
+                    String telefone = cliente.getString("telefone");
+                    String ativoBinario = cliente.getString("ativo");
+
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {nome, cpf, data, endereco, telefone, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaClientes.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -545,7 +588,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
             json.put("operacao", 3);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
-            
+
             if (status.equals("OK")) {
 
                 JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
@@ -613,7 +656,6 @@ public class VisualizarClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -630,6 +672,7 @@ public class VisualizarClientes extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtfCpf;
     private javax.swing.JTextField txtfEndereco;
     private javax.swing.JTextField txtfNome;
