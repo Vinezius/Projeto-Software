@@ -259,7 +259,7 @@ public class Controller extends Thread {
                             try {
                                 java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                                PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Cliente (Nome, Cpf, DataCadastro, Endereco, Telefone, Ativo) VALUES(?,?,?,?,?,?);");
+                                PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Cliente (Nome, Cpf, dataCadastro, Endereco, Telefone, Ativo) VALUES(?,?,?,?,?,?);");
 
                                 preparedStatement.setString(1, obj.getString("nome"));
                                 preparedStatement.setString(2, obj.getString("cpf"));
@@ -343,7 +343,7 @@ public class Controller extends Thread {
                         String json = "";
 
                         while (n.next()) {
-                            json += "{\"nome\": " + n.getString("nome") + ",\"cpf\":\"" + n.getString("cpf") + "\",\"data\":\"" + n.getString("data") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"telefone\":\"" + n.getString("telefone") + "\",\"ativo\":\"" + n.getBoolean("ativo") + "\"}";
+                            json += "{\"nome\": " + n.getString("nome") + ",\"cpf\":\"" + n.getString("cpf") + "\",\"data\":\"" + n.getString("dataCadastro") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"telefone\":\"" + n.getString("telefone") + "\",\"ativo\":\"" + n.getBoolean("ativo") + "\"}";
                         }
                         json = json.replace("}{", "},{");
 
@@ -833,7 +833,7 @@ public class Controller extends Thread {
                         String jsonCliente = "";
 
                         while (a.next()) {
-                            jsonCliente += "{\"nome\": " + a.getString("nome") + ",\"cpf\":\"" + a.getString("cpf") + "\",\"data\":\"" + a.getString("data") + "\",\"endereco\":\"" + a.getString("endereco") + "\",\"telefone\":\"" + a.getString("telefone") + "\",\"ativo\":\"" + a.getString("ativo") + "\"}";
+                            jsonCliente += "{\"nome\": " + a.getString("nome") + ",\"cpf\":\"" + a.getString("cpf") + "\",\"data\":\"" + a.getString("dataCadastro") + "\",\"endereco\":\"" + a.getString("endereco") + "\",\"telefone\":\"" + a.getString("telefone") + "\",\"ativo\":\"" + a.getString("ativo") + "\"}";
                         }
                         jsonCliente = jsonCliente.replace("}{", "},{");
                         //JSON Sabor    
