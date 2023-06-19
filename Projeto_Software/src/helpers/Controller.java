@@ -908,7 +908,7 @@ public class Controller extends Thread {
                         }
                         jsonModalidade = jsonModalidade.replace("}{", "},{");
                         //MENSAGEM
-                        Out.println("{\"operacao\": 23,\"status\": \"OK\", \"clientes\":[" + jsonCliente + "], \"sabores\":[" + jsonSabor + "], \"pedidos\":[" + jsonPedido + "], \"entregadores\":[" + jsonEntregador + "], \"promocoes\":[" + jsonPromocao + "], \"funcionarios\":[" + jsonFuncionario + "], \"tamanhos\":[" + jsonTamanho + "], \"tamanhos\":[" + jsonModalidade + "]}");
+                        Out.println("{\"operacao\": 23,\"status\": \"OK\", \"clientes\":[" + jsonCliente + "], \"sabores\":[" + jsonSabor + "], \"pedidos\":[" + jsonPedido + "], \"entregadores\":[" + jsonEntregador + "], \"promocoes\":[" + jsonPromocao + "], \"funcionarios\":[" + jsonFuncionario + "], \"tamanhos\":[" + jsonTamanho + "], \"modalidades\":[" + jsonModalidade + "]}");
 
                         try {
                             sql.close();
@@ -1070,6 +1070,7 @@ public class Controller extends Thread {
 
                                 preparedStatement.setString(1, obj.getString("preco"));
                                 preparedStatement.setString(2, obj.getString("numFatias"));
+                                preparedStatement.setString(3, obj.getString("tamanho"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 30,\"status\": \"OK\"}");
