@@ -504,10 +504,10 @@ public class VisualizarSabor extends javax.swing.JFrame {
 
                 for (int i = 0; i < jsonArraySabores.length(); i++) {
                     String ativo = "";
-                    JSONObject entregador = jsonArraySabores.getJSONObject(i);
-                    String nomeSabor = entregador.getString("sabor");
-                    String observacao = entregador.getString("observacao");
-                    String ativoBinario = entregador.getString("ativo");
+                    JSONObject sabor = jsonArraySabores.getJSONObject(i);
+                    String nomeSabor = sabor.getString("sabor");
+                    String observacao = sabor.getString("observacao");
+                    String ativoBinario = sabor.getString("ativo");
 
                     switch (ativoBinario) {
                         case "0":

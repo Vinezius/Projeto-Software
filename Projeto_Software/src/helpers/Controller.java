@@ -130,11 +130,9 @@ public class Controller extends Thread {
     public static String clientExist(String nome) {
         try {
             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
+            String sqlQuery = "SELECT * FROM Cliente WHERE Nome like '%" + nome + "%';";
 
-            PreparedStatement preparedStatement = sql.prepareStatement("SELECT * FROM Cliente WHERE Nome=?;");
-
-            preparedStatement.setString(1, nome);
-
+            PreparedStatement preparedStatement = sql.prepareStatement(sqlQuery);
             ResultSet n = preparedStatement.executeQuery();
             if (n.next()) {
                 sql.close();
@@ -648,7 +646,7 @@ public class Controller extends Thread {
                                 preparedStatement.setString(1, obj.getString("nome"));
                                 preparedStatement.setString(2, obj.getString("placa"));
                                 preparedStatement.setBoolean(3, obj.getBoolean("ativo"));
-                                preparedStatement.setString(4,obj.getString("cpf"));
+                                preparedStatement.setString(4, obj.getString("cpf"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 16,\"status\": \"OK\"}");
@@ -925,9 +923,9 @@ public class Controller extends Thread {
                         Out.println("{\"operacao\": 23,\"status\": \"Erro no banco de dados\"}");
                     }
                 } else if (tipo == 24) {
-                    if(!clientExist(obj.getString("nome")).equals("0")){
+                    if (!clientExist(obj.getString("nome")).equals("0")) {
                         Out.println("{\"operacao\": 24,\"status\": \"Cliente não cadastrado\"}");
-                    }else{
+                    } else {
                         Out.println("{\"operacao\": 24,\"status\": \"OK\"}");
                     }
                 } else if (tipo == 25) {

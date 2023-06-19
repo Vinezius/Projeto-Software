@@ -5,7 +5,10 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -20,6 +23,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
     public AdicionarPedido() {
         initComponents();
         definirNumFatias();
+        buscarDados();
     }
 
     /**
@@ -137,6 +141,11 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel4.setText("Modalidade Entrega");
 
         comboEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEntregaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel5.setText("Endereço");
@@ -181,6 +190,11 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel9.setText("Promoção");
 
         comboPromocao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPromocaoActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel10.setText("Quantidade");
@@ -587,9 +601,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
                         .addGap(32, 32, 32))))
         );
 
-        comboEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"ENTREGA", "RETIRADA" }));
-        comboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PEQUENA", "MÉDIA", "GRANDE" }));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -597,7 +608,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkCadastradoActionPerformed
 
-    private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
+    private void buscarDados() {
         try {
 
             JSONObject json = new JSONObject();
@@ -608,7 +619,69 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Dados buscados com sucesso!");
+                JSONArray jsonArrayModalidades = (JSONArray) response.get("modalidades");
+                JSONArray jsonArrayFuncionarios = (JSONArray) response.get("funcionarios");
+                JSONArray jsonArrayEntregadores = (JSONArray) response.get("entregadores");
+                JSONArray jsonArrayPromocoes = (JSONArray) response.get("promocoes");
+                JSONArray jsonArrayTamanhos = (JSONArray) response.get("tamanhos");
+                JSONArray jsonArraySabores = (JSONArray) response.get("sabores");
+
+                DefaultComboBoxModel<String> comboModelModalideEntrega = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelFuncionarios = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelEntregadores = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelPromocoes = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelTamanhos = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelSabores = new DefaultComboBoxModel<>();
+
+                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
+                    String ativo = "";
+                    JSONObject modalidade = jsonArrayModalidades.getJSONObject(i);
+                    String modalidadeNome = modalidade.getString("modalidade");
+                    comboModelModalideEntrega.addElement(modalidadeNome);
+
+                }
+
+                for (int i = 0; i < jsonArrayFuncionarios.length(); i++) {
+                    String ativo = "";
+                    JSONObject funcionario = jsonArrayFuncionarios.getJSONObject(i);
+                    String nomeFuncionario = funcionario.getString("nome");
+                    comboModelFuncionarios.addElement(nomeFuncionario);
+                }
+
+                for (int i = 0; i < jsonArrayEntregadores.length(); i++) {
+                    JSONObject entregador = jsonArrayEntregadores.getJSONObject(i);
+                    String nomeEntregador = entregador.getString("nome");
+                    comboModelEntregadores.addElement(nomeEntregador);
+
+                }
+                comboModelPromocoes.addElement("Selecionar promoção");
+
+                for (int i = 0; i < jsonArrayPromocoes.length(); i++) {
+                    JSONObject promocao = jsonArrayPromocoes.getJSONObject(i);
+                    String nomePromocao = promocao.getString("promocao");
+                    comboModelPromocoes.addElement(nomePromocao);
+                }
+
+                for (int i = 0; i < jsonArrayTamanhos.length(); i++) {
+                    JSONObject tamanho = jsonArrayTamanhos.getJSONObject(i);
+                    String nomeTamanho = tamanho.getString("tamanho");
+                    comboModelTamanhos.addElement(nomeTamanho);
+
+                }
+
+                for (int i = 0; i < jsonArraySabores.length(); i++) {
+                    JSONObject sabor = jsonArraySabores.getJSONObject(i);
+                    String nomeSabor = sabor.getString("sabor");
+                    comboModelSabores.addElement(nomeSabor);
+
+                }
+
+                comboEntrega.setModel(comboModelModalideEntrega);
+                comboFuncionario.setModel(comboModelFuncionarios);
+                comboEntregador.setModel(comboModelEntregadores);
+                comboPromocao.setModel(comboModelPromocoes);
+                comboTamanho.setModel(comboModelTamanhos);
+                comboSabor.setModel(comboModelSabores);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");
@@ -617,6 +690,10 @@ public class AdicionarPedido extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
+
     }//GEN-LAST:event_btnBuscarDadosActionPerformed
 
     private void txtfNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNomeClienteActionPerformed
@@ -809,28 +886,63 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
     }//GEN-LAST:event_comboTamanhoFocusGained
 
+    public void calcularValorFinal() {
+        String tamanho = comboTamanho.getSelectedItem() + "";
+        String modalidade = comboEntrega.getSelectedItem() + "";
+        String promocao = comboPromocao.getSelectedItem() + "";
+        Double valorFinal = 0.0;
+        switch (tamanho) {
+            case "Pequena" ->
+                valorFinal = 20.99;
+            case "Média" ->
+                valorFinal = 30.99;
+            case "Grande" ->
+                valorFinal = 40.99;
+
+            default ->
+                txtfNumFatias.setText("");
+
+        }
+
+        if (modalidade == "Entrega") {
+            valorFinal += 8.0;
+        }
+
+        if (promocao == "Natal" || promocao == "natal") {
+            valorFinal -= 10.0;
+        }
+
+        txtfValorFinal.setText(valorFinal + "");
+
+    }
+
     public void definirNumFatias() {
 
         String tamanho = comboTamanho.getSelectedItem() + "";
 
         switch (tamanho) {
-            case "PEQUENA" ->
+            case "Pequena":
                 txtfNumFatias.setText("4");
+                txtfValorBase.setText(20.99 + "");
 
-            case "MÉDIA" ->
+            case "Média":
                 txtfNumFatias.setText("6");
-            case "GRANDE" ->
+                txtfValorBase.setText(30.99 + "");
+
+            case "Grande":
                 txtfNumFatias.setText("8");
-            default ->
+                txtfValorBase.setText(40.99 + "");
+
+            default:
                 txtfNumFatias.setText("");
 
         }
+        calcularValorFinal();
     }
 
     private void comboTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTamanhoActionPerformed
 
         definirNumFatias();
-
     }//GEN-LAST:event_comboTamanhoActionPerformed
 
     private void menuItemCadastrarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarTamanhoActionPerformed
@@ -842,6 +954,21 @@ public class AdicionarPedido extends javax.swing.JFrame {
     private void comboEntregadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEntregadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboEntregadorActionPerformed
+
+    private void comboEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEntregaActionPerformed
+        calcularValorFinal();
+    }//GEN-LAST:event_comboEntregaActionPerformed
+
+    private void comboPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPromocaoActionPerformed
+
+        String promocao = comboPromocao.getSelectedItem() + "";
+        if (promocao == "Natal" || promocao == "natal") {
+            txtfDesconto.setText("10.0");
+        }
+        calcularValorFinal();
+
+
+    }//GEN-LAST:event_comboPromocaoActionPerformed
 
     /**
      * @param args the command line arguments
