@@ -498,7 +498,6 @@ public class VisualizarClientes extends javax.swing.JFrame {
             JSONObject json = new JSONObject();
             json.put("operacao", 4);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

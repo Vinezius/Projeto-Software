@@ -144,6 +144,11 @@ public class Relatorio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         btnBuscarDados.setText("Buscar Dados");
+        btnBuscarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarDadosActionPerformed(evt);
+            }
+        });
 
         menuCadastros1.setText("Cadastros ↓");
         menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -532,6 +537,28 @@ public class Relatorio extends javax.swing.JFrame {
         txtfDataInicio.setText("");
         txtfPlaca.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
+        try {
+
+            JSONObject json = new JSONObject();
+            json.put("operacao", 23);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Dados buscados com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarDadosActionPerformed
 
     /**
      * @param args the command line arguments

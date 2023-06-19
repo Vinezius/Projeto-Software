@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -32,7 +34,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
 
         btnBuscarPedidos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaFuncionarios = new javax.swing.JTable();
         btnCadastrarFuncionario = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -73,39 +75,23 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nome", "Cargo", "Ativo"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaFuncionarios);
 
         btnCadastrarFuncionario.setText("Cadastrar Funcionário");
         btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -114,9 +100,15 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Para editar um Entregador, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome e clique em excluir.");
+        jLabel2.setText("Para editar um Funcionário, preencha as informações abaixo e clique em editar. Para excluir apenas insira o nome e clique em excluir.");
 
         jLabel3.setText("Nome:");
+
+        txtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfNomeActionPerformed(evt);
+            }
+        });
 
         txtfCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,19 +306,18 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                                .addComponent(txtfCargo)))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90)
+                                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                            .addComponent(txtfCargo))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -488,7 +479,39 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
             JSONObject json = new JSONObject();
             json.put("operacao", 28);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayFuncionarios = (JSONArray) response.get("funcionarios");
+
+                for (int i = 0; i < jsonArrayFuncionarios.length(); i++) {
+                    String ativo = "";
+                    JSONObject funcionario = jsonArrayFuncionarios.getJSONObject(i);
+                    String nome = funcionario.getString("nome");
+                    String cargo = funcionario.getString("cargo");
+                    String ativoBinario = funcionario.getString("ativo");
+
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {nome, cargo, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaFuncionarios.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -511,10 +534,10 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Funcionário editado com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao editar funcionário!");
 
             }
         } catch (Exception e) {
@@ -536,16 +559,20 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Funcionário excluído com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao excluir funcionário!");
 
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -597,7 +624,6 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -614,6 +640,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaFuncionarios;
     private javax.swing.JTextField txtfCargo;
     private javax.swing.JTextField txtfNome;
     // End of variables declaration//GEN-END:variables

@@ -312,7 +312,6 @@ public class AdicionarFuncionario extends javax.swing.JFrame {
         String cargo = txtfCargo.getText();
         String nome = txtfNome.getText();
         Boolean ativo = checkAtivo.isSelected();
-
         try {
             JSONObject json = new JSONObject();
             json.put("cargo", cargo);
