@@ -213,6 +213,17 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnBuscarDados" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtfObservacoes" max="32767" attributes="0"/>
+                                  <Component id="txtfPedido" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -276,7 +287,7 @@
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtfPlacaVeiculo" alignment="0" pref="170" max="32767" attributes="0"/>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtfNumFatias" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtfNumFatias" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -288,17 +299,6 @@
                                       <Component id="txtfEndereco" pref="261" max="32767" attributes="0"/>
                                       <Component id="txtfAcrescimo" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtfObservacoes" max="32767" attributes="0"/>
-                                  <Component id="txtfPedido" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -315,7 +315,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -385,9 +385,9 @@
                           <Component id="comboSabor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="comboTamanho" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtfAcrescimo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtfNumFatias" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtfNumFatias" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtfObservacoes" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -498,6 +498,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfDataPedido">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfDataPedidoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -703,11 +706,6 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero de fatias"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtfNumFatias">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -799,6 +797,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfPedido">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtfNumFatias">
     </Component>
   </SubComponents>
 </Form>

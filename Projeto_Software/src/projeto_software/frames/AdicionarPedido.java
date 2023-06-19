@@ -66,7 +66,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         comboTamanho = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        txtfNumFatias = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtfAcrescimo = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -83,6 +82,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         txtfHoraPedido = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txtfPedido = new javax.swing.JTextField();
+        txtfNumFatias = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros1 = new javax.swing.JMenu();
         menuItemCadastrarCliente = new javax.swing.JMenuItem();
@@ -136,6 +136,12 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Data do Pedido");
+
+        txtfDataPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfDataPedidoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Modalidade Entrega");
@@ -226,8 +232,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel13.setText("Número de fatias");
-
-        txtfNumFatias.setEditable(false);
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel14.setText("Acréscimo");
@@ -439,6 +443,14 @@ public class AdicionarPedido extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBuscarDados)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel20))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtfObservacoes)
+                                    .addComponent(txtfPedido)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,15 +508,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
                                         .addComponent(jLabel14)
                                         .addComponent(jLabel5)
                                         .addComponent(txtfEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                        .addComponent(txtfAcrescimo))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel20))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtfObservacoes)
-                                    .addComponent(txtfPedido))))))
+                                        .addComponent(txtfAcrescimo)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -514,7 +518,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -572,8 +576,8 @@ public class AdicionarPedido extends javax.swing.JFrame {
                             .addComponent(comboSabor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtfAcrescimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfNumFatias))
-                        .addGap(37, 37, 37)
+                            .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(txtfObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -840,13 +844,15 @@ public class AdicionarPedido extends javax.swing.JFrame {
         String tamanho = comboTamanho.getSelectedItem() + "";
         String acrescimo = txtfAcrescimo.getText();
         String pedido = txtfPedido.getText();
-
+        String numFatias = txtfNumFatias.getText();
+        String observacoes = txtfObservacoes.getText();
+        System.out.println("aaa" + numFatias);
         try {
             JSONObject json = new JSONObject();
             json.put("nome", nomeCliente);
-            json.put("dataPedido", dataPedido);
-            json.put("horaPedido", horaPedido);
-            json.put("modalidadeEntrega", modalidadeEntrega);
+            json.put("data", dataPedido);
+            json.put("hora", horaPedido);
+            json.put("modalidade", modalidadeEntrega);
             json.put("endereco", endereco);
             json.put("funcionario", funcionario);
             json.put("placa", placa);
@@ -856,19 +862,20 @@ public class AdicionarPedido extends javax.swing.JFrame {
             json.put("sabor", sabor);
             json.put("tamanho", tamanho);
             json.put("acrescimo", acrescimo);
-            json.put("operacao", 12);
+            json.put("operacao", 9);
             json.put("pedido", pedido);
             json.put("status", "Em preparação");
-
+            json.put("numFatias", numFatias);
+            json.put("observacoes", observacoes);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Promoção cadastrada com sucesso!");
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar promoção!");
+                JOptionPane.showMessageDialog(this, "Erro ao cadastrar!");
 
             }
         } catch (Exception e) {
@@ -916,14 +923,14 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
     }
 
+    
     public void definirNumFatias() {
 
         String tamanho = comboTamanho.getSelectedItem() + "";
-
         switch (tamanho) {
             case "Pequena":
-                txtfNumFatias.setText("4");
                 txtfValorBase.setText(20.99 + "");
+                txtfNumFatias.setText("4");
 
             case "Média":
                 txtfNumFatias.setText("6");
@@ -969,6 +976,10 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_comboPromocaoActionPerformed
+
+    private void txtfDataPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfDataPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfDataPedidoActionPerformed
 
     /**
      * @param args the command line arguments

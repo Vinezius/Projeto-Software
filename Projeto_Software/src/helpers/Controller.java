@@ -469,7 +469,7 @@ public class Controller extends Thread {
                         try {
                             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                            PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Pedido (Nome, Data, Hora, Endereco, Funcionario, Entregador, Promocao, Quantidade, Sabor, Tamanho, NumFatias, Acrescimo, Observacoes, Valor) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                            PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Pedido (Nome, Data, Hora, Endereco, Funcionario, Entregador, Promocao, Quantidade, Sabor, Tamanho, NumFatias, Acrescimo, Observacoes, Valor, Pedido) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 
                             preparedStatement.setString(1, obj.getString("nome"));
                             preparedStatement.setString(2, obj.getString("data"));
@@ -478,13 +478,14 @@ public class Controller extends Thread {
                             preparedStatement.setString(5, obj.getString("funcionario"));
                             preparedStatement.setString(6, obj.getString("entregador"));
                             preparedStatement.setString(7, obj.getString("promocao"));
-                            preparedStatement.setInt(8, obj.getInt("quantidade"));
+                            preparedStatement.setString(8, obj.getString("quantidade"));
                             preparedStatement.setString(9, obj.getString("sabor"));
                             preparedStatement.setString(10, obj.getString("tamanho"));
                             preparedStatement.setString(11, obj.getString("numFatias"));
                             preparedStatement.setString(12, obj.getString("acrescimo"));
                             preparedStatement.setString(13, obj.getString("observacoes"));
                             preparedStatement.setString(14, obj.getString("status"));
+                            preparedStatement.setString(15, obj.getString("pedido"));
 
                             preparedStatement.executeUpdate();
                             Out.println("{\"operacao\": 9,\"status\": \"OK\"}");
@@ -853,7 +854,7 @@ public class Controller extends Thread {
                         String jsonPedido = "";
 
                         while (c.next()) {
-                            jsonPedido += "{\"numPedido\": " + c.getInt("numPedido") + ",\"status\":\"" + c.getString("status") + "\",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"cliente\":\"" + c.getString("cliente") + "\",\"cadastrado\":\"" + c.getBoolean("cadastrado") + ",\"pedido\":\"" + c.getString("pedido") + "\"}";
+                            jsonPedido += "{\"numPedido\": " + c.getInt("numPedido") + ",\"status\":\"" + c.getString("status") + ",\"observacoes\":\"" + c.getString("observacoes") + "\",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"cliente\":\"" + c.getString("cliente") + "\",\"cadastrado\":\"" + c.getBoolean("cadastrado") + ",\"pedido\":\"" + c.getString("pedido") + "\"}";
                         }
                         jsonPedido = jsonPedido.replace("}{", "},{");
                         //JSON Entregador
