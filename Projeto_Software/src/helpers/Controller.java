@@ -217,7 +217,7 @@ public class Controller extends Thread {
         try {
             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-            PreparedStatement preparedStatement = sql.prepareStatement("SELECT * FROM Pedido WHERE idPedido=?;");
+            PreparedStatement preparedStatement = sql.prepareStatement("SELECT * FROM Pedido WHERE numPedido=?;");
 
             preparedStatement.setInt(1, numPedido);
 
@@ -536,7 +536,7 @@ public class Controller extends Thread {
                             try {
                                 java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                                PreparedStatement preparedStatement = sql.prepareStatement("DELETE FROM Pedido WHERE IDPedido=?");
+                                PreparedStatement preparedStatement = sql.prepareStatement("DELETE FROM Pedido WHERE numPedido=?");
 
                                 preparedStatement.setInt(1, obj.getInt("numPedido"));
 
@@ -553,7 +553,7 @@ public class Controller extends Thread {
                         }
                     }
                 } else if (tipo == 12) {
-                    if (!orderExist(obj.getInt("idPedido")).equals(obj.getInt("numPedido"))) {
+                    if (!orderExist(obj.getInt("numPedido")).equals(obj.getString("0"))) {
                         Out.println("{\"operacao\": 12,\"status\": \"Pedido não existe\"}");
                     } else {
                         try {
