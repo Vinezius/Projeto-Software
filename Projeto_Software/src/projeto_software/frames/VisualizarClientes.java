@@ -73,6 +73,11 @@ public class VisualizarClientes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnRelatorio1.setText("Relatório");
+        btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorio1ActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -603,6 +608,12 @@ public class VisualizarClientes extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio1ActionPerformed
+       Relatorio relatorio = new Relatorio();
+       relatorio.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_btnRelatorio1ActionPerformed
 
     /**
      * @param args the command line arguments

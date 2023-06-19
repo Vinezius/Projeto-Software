@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -31,7 +33,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaPromocoes = new javax.swing.JTable();
         btnRelatorio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnBuscarPromocoes = new javax.swing.JButton();
@@ -68,7 +70,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPromocoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,7 +82,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -94,7 +96,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaPromocoes);
 
         btnRelatorio.setText("Relatório");
         btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -495,11 +497,48 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos2ActionPerformed
 
     private void btnBuscarPromocoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPromocoesActionPerformed
+        String colunas[] = {"Promoção", "Desconto", "Ativo", "Observação"};
+        String dadosLimpeza[][] = {{"", "", "", ""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaPromocoes.setModel(model);
+
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 22);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayPromocoes = (JSONArray) response.get("promocoes");
+
+                for (int i = 0; i < jsonArrayPromocoes.length(); i++) {
+                    String ativo = "";
+                    JSONObject promocao = jsonArrayPromocoes.getJSONObject(i);
+                    String nomePromocao = promocao.getString("promocao");
+                    String desconto = promocao.getString("desconto");
+                    String observacao = promocao.getString("observacao");
+                    String ativoBinario = promocao.getString("ativo");
+                    switch (ativoBinario) {
+                        case "0":
+                            ativo = "Não";
+                            break;
+                        case "1":
+                            ativo = "Sim";
+                            break;
+                    }
+                    String dados[] = {nomePromocao, desconto, observacao, ativo};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaPromocoes.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -524,10 +563,10 @@ public class VisualizarPromocao extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Editado com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao Editar!");
 
             }
         } catch (Exception e) {
@@ -549,10 +588,10 @@ public class VisualizarPromocao extends javax.swing.JFrame {
 
             if (status.equals("OK")) {
 
-                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Excluído com sucesso!");
 
             } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar cliente!");
+                JOptionPane.showMessageDialog(this, "Erro ao excluir!");
 
             }
         } catch (Exception e) {
@@ -611,7 +650,6 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente1;
     private javax.swing.JMenuItem menuItemCadastrarEntregador1;
@@ -628,6 +666,7 @@ public class VisualizarPromocao extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao;
     private javax.swing.JMenuItem menuItemVisualizarTamanho;
     private javax.swing.JMenu menuPedidos2;
+    private javax.swing.JTable tabelaPromocoes;
     private javax.swing.JTextField txtfDesconto;
     private javax.swing.JTextField txtfObservacao;
     private javax.swing.JTextField txtfPromocao;
