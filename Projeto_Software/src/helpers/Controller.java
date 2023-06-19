@@ -263,7 +263,7 @@ public class Controller extends Thread {
 
                                 preparedStatement.setString(1, obj.getString("nome"));
                                 preparedStatement.setString(2, obj.getString("cpf"));
-                                preparedStatement.setString(3, obj.getString("dataCadastro"));
+                                preparedStatement.setString(3, obj.getString("data"));
                                 preparedStatement.setString(4, obj.getString("endereco"));
                                 preparedStatement.setString(5, obj.getString("telefone"));
                                 preparedStatement.setBoolean(6, obj.getBoolean("ativo"));
@@ -293,6 +293,7 @@ public class Controller extends Thread {
                             preparedStatement.setString(2, obj.getString("endereco"));
                             preparedStatement.setString(3, obj.getString("telefone"));
                             preparedStatement.setBoolean(4, obj.getBoolean("ativo"));
+                            preparedStatement.setString(5, obj.getString("cpf"));
 
                             preparedStatement.executeUpdate();
                             Out.println("{\"operacao\": 2,\"status\": \"OK\"}");
@@ -398,6 +399,7 @@ public class Controller extends Thread {
 
                                 preparedStatement.setString(1, obj.getString("observacao"));
                                 preparedStatement.setBoolean(2, obj.getBoolean("ativo"));
+                                preparedStatement.setString(3, obj.getString("sabor"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 6,\"status\": \"OK\"}");
@@ -507,11 +509,12 @@ public class Controller extends Thread {
                             try {
                                 java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                                PreparedStatement preparedStatement = sql.prepareStatement("UPDATE Pedido SET Status=?, Cliente=?, Pedido=? WHERE IDPedido=?");
+                                PreparedStatement preparedStatement = sql.prepareStatement("UPDATE Pedido SET Status=?, Cliente=?, Pedido=? WHERE NumPedido=?");
 
                                 preparedStatement.setString(1, obj.getString("status"));
                                 preparedStatement.setString(2, obj.getString("cliente"));
                                 preparedStatement.setString(3, obj.getString("pedido"));
+                                preparedStatement.setInt(4, obj.getInt("numPedido"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 10,\"status\": \"OK\"}");
@@ -558,9 +561,10 @@ public class Controller extends Thread {
                         try {
                             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                            PreparedStatement preparedStatement = sql.prepareStatement("UPDATE Pedido SET Status=? WHERE IDPedido=?");
+                            PreparedStatement preparedStatement = sql.prepareStatement("UPDATE Pedido SET Status=? WHERE NumPedido=?");
 
                             preparedStatement.setString(1, obj.getString("status"));
+                            preparedStatement.setInt(2, obj.getInt("numPedido"));
 
                             preparedStatement.executeUpdate();
                             Out.println("{\"operacao\": 12,\"status\": \"OK\"}");
@@ -644,6 +648,7 @@ public class Controller extends Thread {
                                 preparedStatement.setString(1, obj.getString("nome"));
                                 preparedStatement.setString(2, obj.getString("placa"));
                                 preparedStatement.setBoolean(3, obj.getBoolean("ativo"));
+                                preparedStatement.setString(4,obj.getString("cpf"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 16,\"status\": \"OK\"}");
@@ -752,6 +757,7 @@ public class Controller extends Thread {
                                 preparedStatement.setString(1, obj.getString("desconto"));
                                 preparedStatement.setString(2, obj.getString("observacao"));
                                 preparedStatement.setBoolean(3, obj.getBoolean("ativo"));
+                                preparedStatement.setString(4, obj.getString("promocao"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 20,\"status\": \"OK\"}");
@@ -963,6 +969,7 @@ public class Controller extends Thread {
                                 preparedStatement.setString(1, obj.getString("cargo"));
                                 preparedStatement.setBoolean(2, obj.getBoolean("ativo"));
                                 preparedStatement.setString(3, obj.getString("nome"));
+                                preparedStatement.setString(4, obj.getString("nome"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 26,\"status\": \"OK\"}");
@@ -1149,6 +1156,7 @@ public class Controller extends Thread {
 
                                 preparedStatement.setString(1, obj.getString("preco"));
                                 preparedStatement.setBoolean(2, obj.getBoolean("ativo"));
+                                preparedStatement.setString(3, obj.getString("modalidade"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 33,\"status\": \"OK\"}");
@@ -1173,7 +1181,7 @@ public class Controller extends Thread {
                         String json = "";
 
                         while (n.next()) {
-                            json += "{\"modalidade\": " + n.getString("modalidade") + ",\"preco\":\"" + n.getString("preco") + ",\"ativo\":\"" + n.getString("ativo") + "\"}";
+                            json += "{\"modalidade\": " + n.getString("modalidade") + ",\"preco\":\"" + n.getString("preco") + "\",\"ativo\":\"" + n.getString("ativo") + "\"}";
                         }
                         json = json.replace("}{", "},{");
 
