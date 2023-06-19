@@ -127,7 +127,7 @@ public class Controller extends Thread {
         return "-1";
     }
 
-    public static boolean clientExist(String nome) {
+    public static String clientExist(String nome) {
         try {
             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
@@ -138,15 +138,15 @@ public class Controller extends Thread {
             ResultSet n = preparedStatement.executeQuery();
             if (n.next()) {
                 sql.close();
-                return true;
+                return "0";
             } else {
                 sql.close();
-                return false;
+                return "1";
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return "-1";
     }
 
     public static String promotionExist(String promocao) {
@@ -925,7 +925,11 @@ public class Controller extends Thread {
                         Out.println("{\"operacao\": 23,\"status\": \"Erro no banco de dados\"}");
                     }
                 } else if (tipo == 24) {
-                    clientExist(obj.getString("nome"));
+                    if(!clientExist(obj.getString("nome")).equals("0")){
+                        Out.println("{\"operacao\": 24,\"status\": \"Cliente não cadastrado\"}");
+                    }else{
+                        Out.println("{\"operacao\": 24,\"status\": \"OK\"}");
+                    }
                 } else if (tipo == 25) {
                     if (obj.getString("nome").isBlank() || obj.getString("cargo").isBlank()) {
                         Out.println("{\"operacao\": 25,\"status\": \"Todos os campos são obrigatórios\"}");
