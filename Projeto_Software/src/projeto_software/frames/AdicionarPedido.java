@@ -592,7 +592,25 @@ public class AdicionarPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_checkCadastradoActionPerformed
 
     private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            JSONObject json = new JSONObject();
+            json.put("operacao", 23);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Dados buscados com sucesso!");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnBuscarDadosActionPerformed
 
     private void txtfNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNomeClienteActionPerformed
@@ -724,8 +742,8 @@ public class AdicionarPedido extends javax.swing.JFrame {
         String tamanho = comboTamanho.getSelectedItem() + "";
         String acrescimo = txtfAcrescimo.getText();
         String pedido = txtfPedido.getText();
-        
-          try {
+
+        try {
             JSONObject json = new JSONObject();
             json.put("nome", nomeCliente);
             json.put("dataPedido", dataPedido);
@@ -758,8 +776,8 @@ public class AdicionarPedido extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        
+
+
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void comboTamanhoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboTamanhoPropertyChange
