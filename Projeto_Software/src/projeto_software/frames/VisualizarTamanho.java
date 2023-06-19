@@ -7,6 +7,7 @@ package projeto_software.frames;
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -42,7 +43,6 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtfValor = new javax.swing.JTextField();
-        checkAtivo = new javax.swing.JCheckBox();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnAdicionarTamanho = new javax.swing.JButton();
@@ -57,6 +57,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         menuItemCadastrarPromocao = new javax.swing.JMenuItem();
         menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos1 = new javax.swing.JMenuItem();
+        menuItemCadastrarTamanho = new javax.swing.JMenuItem();
         menuPedidos7 = new javax.swing.JMenu();
         menuItemVisualizarClientes6 = new javax.swing.JMenuItem();
         menuItemVisualizarEntregadores1 = new javax.swing.JMenuItem();
@@ -71,20 +72,20 @@ public class VisualizarTamanho extends javax.swing.JFrame {
 
         tabelaTamanhos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Tamanho", "Preço", "Número de fatias", "Ativo"
+                "Tamanho", "Preço", "Número de fatias"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -126,8 +127,6 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                 txtfValorActionPerformed(evt);
             }
         });
-
-        checkAtivo.setText("Ativo");
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +215,14 @@ public class VisualizarTamanho extends javax.swing.JFrame {
             }
         });
         menuCadastros1.add(menuItemCadastrarPedidos1);
+
+        menuItemCadastrarTamanho.setText("Tamanhos");
+        menuItemCadastrarTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarTamanhoActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarTamanho);
 
         jMenuBar1.add(menuCadastros1);
 
@@ -312,7 +319,6 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkAtivo, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnBuscarTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,9 +381,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtfNumFatias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(checkAtivo)
-                        .addGap(114, 114, 114)
+                        .addGap(171, 171, 171)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -441,22 +445,43 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarTamanhoActionPerformed
 
     private void btnBuscarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTamanhoActionPerformed
-        String colunas[] = {"Tamanho", "Preço", "Número de fatias", "Ativo"};
-        String dados[][] = {{"Pequena", "20,99", "4", "Sim"},
-        {"Média", "30,99", "6", "Sim"},
-        {"Grande", "40,99", "8", "Sim"},
-        {"Gigante", "50,99", "12", "Não"}
+        String colunas[] = {"Tamanho", "Preço", "Número de fatias"};
+        String dadosLimpeza[][] = {{"", "", "", ""}
         };
 
-        DefaultTableModel tabela = new DefaultTableModel(dados, colunas);
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
 
-        tabelaTamanhos.setModel(tabela);
+        tabelaTamanhos.setModel(model);
 
         try {
             JSONObject json = new JSONObject();
             json.put("operacao", 32);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
 
+            if (status.equals("OK")) {
+
+                JOptionPane.showMessageDialog(this, "Filtrado com sucesso!");
+                JSONArray jsonArrayTamanhos = (JSONArray) response.get("tamanhos");
+
+                for (int i = 0; i < jsonArrayTamanhos.length(); i++) {
+                    String ativo = "";
+                    JSONObject tamanho = jsonArrayTamanhos.getJSONObject(i);
+                    String nomeTamanho = tamanho.getString("tamanho");
+                    String preco = tamanho.getString("preco");
+                    String numFatias = tamanho.getString("numFatias");
+                    
+                    String dados[] = {nomeTamanho, preco, numFatias};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaTamanhos.getModel();
+
+                    tabela.addRow(dados);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -525,12 +550,10 @@ public class VisualizarTamanho extends javax.swing.JFrame {
 
             String tamanho = txtfTamanho.getText();
             String valor = txtfValor.getText();
-            Boolean ativo = checkAtivo.isSelected();
             String numFatias = txtfNumFatias.getSelectedText();
             JSONObject json = new JSONObject();
             json.put("tamanho", tamanho);
             json.put("valor", valor);
-            json.put("ativo", ativo);
             json.put("numFatias", numFatias);
             json.put("operacao", 30);
 
@@ -554,9 +577,9 @@ public class VisualizarTamanho extends javax.swing.JFrame {
         try {
 
             String tamanho = txtfTamanho.getText();
-           
+
             JSONObject json = new JSONObject();
-            json.put("tamanho", tamanho);  
+            json.put("tamanho", tamanho);
             json.put("operacao", 31);
 
             JSONObject response = ConexaoCliente.ConectarServidor(json);
@@ -574,6 +597,12 @@ public class VisualizarTamanho extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void menuItemCadastrarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarTamanhoActionPerformed
+        AdicionarTamanho adicionarTamanho = new AdicionarTamanho();
+        adicionarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarTamanhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,7 +645,6 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnRelatorio;
-    private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -633,6 +661,7 @@ public class VisualizarTamanho extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadastrarPedidos1;
     private javax.swing.JMenuItem menuItemCadastrarPromocao;
     private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho;
     private javax.swing.JMenuItem menuItemSabores;
     private javax.swing.JMenuItem menuItemVisualizarClientes6;
     private javax.swing.JMenuItem menuItemVisualizarEntregadores1;

@@ -56,6 +56,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         menuItemCadastrarPromocao = new javax.swing.JMenuItem();
         menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos1 = new javax.swing.JMenuItem();
+        menuItemCadastrarTamanho = new javax.swing.JMenuItem();
         menuPedidos7 = new javax.swing.JMenu();
         menuItemVisualizarClientes6 = new javax.swing.JMenuItem();
         menuItemVisualizarEntregadores1 = new javax.swing.JMenuItem();
@@ -203,6 +204,14 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
             }
         });
         menuCadastros1.add(menuItemCadastrarPedidos1);
+
+        menuItemCadastrarTamanho.setText("Tamanhos");
+        menuItemCadastrarTamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarTamanhoActionPerformed(evt);
+            }
+        });
+        menuCadastros1.add(menuItemCadastrarTamanho);
 
         jMenuBar1.add(menuCadastros1);
 
@@ -579,6 +588,12 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfNomeActionPerformed
 
+    private void menuItemCadastrarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarTamanhoActionPerformed
+        AdicionarTamanho adicionarTamanho = new AdicionarTamanho();
+        adicionarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarTamanhoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -636,6 +651,7 @@ public class VisualizarFuncionarios extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadastrarPedidos1;
     private javax.swing.JMenuItem menuItemCadastrarPromocao;
     private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho;
     private javax.swing.JMenuItem menuItemSabores;
     private javax.swing.JMenuItem menuItemVisualizarClientes6;
     private javax.swing.JMenuItem menuItemVisualizarEntregadores1;

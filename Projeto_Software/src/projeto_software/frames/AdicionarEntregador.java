@@ -51,6 +51,7 @@ public class AdicionarEntregador extends javax.swing.JFrame {
         menuItemCadastrarPromocao = new javax.swing.JMenuItem();
         menuItemCadastrarSabor = new javax.swing.JMenuItem();
         menuItemCadastrarPedidos = new javax.swing.JMenuItem();
+        menuItemCadastrarTamanho12 = new javax.swing.JMenuItem();
         menuPedidos7 = new javax.swing.JMenu();
         menuItemVisualizarClientes6 = new javax.swing.JMenuItem();
         menuItemVisualizarEntregadores1 = new javax.swing.JMenuItem();
@@ -158,6 +159,14 @@ public class AdicionarEntregador extends javax.swing.JFrame {
             }
         });
         menuCadastros.add(menuItemCadastrarPedidos);
+
+        menuItemCadastrarTamanho12.setText("Tamanhos");
+        menuItemCadastrarTamanho12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadastrarTamanho12ActionPerformed(evt);
+            }
+        });
+        menuCadastros.add(menuItemCadastrarTamanho12);
 
         jMenuBar1.add(menuCadastros);
 
@@ -448,6 +457,12 @@ public class AdicionarEntregador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
+    private void menuItemCadastrarTamanho12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarTamanho12ActionPerformed
+        AdicionarTamanho adicionarTamanho = new AdicionarTamanho();
+        adicionarTamanho.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuItemCadastrarTamanho12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -502,12 +517,20 @@ public class AdicionarEntregador extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadastrarPedidos;
     private javax.swing.JMenuItem menuItemCadastrarPromocao;
     private javax.swing.JMenuItem menuItemCadastrarSabor;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho1;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho10;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho11;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho12;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho2;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho3;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho4;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho5;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho6;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho7;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho8;
+    private javax.swing.JMenuItem menuItemCadastrarTamanho9;
     private javax.swing.JMenuItem menuItemSabores;
-    private javax.swing.JMenuItem menuItemVisualizarClientes1;
-    private javax.swing.JMenuItem menuItemVisualizarClientes2;
-    private javax.swing.JMenuItem menuItemVisualizarClientes3;
-    private javax.swing.JMenuItem menuItemVisualizarClientes4;
-    private javax.swing.JMenuItem menuItemVisualizarClientes5;
     private javax.swing.JMenuItem menuItemVisualizarClientes6;
     private javax.swing.JMenuItem menuItemVisualizarEntregadores1;
     private javax.swing.JMenuItem menuItemVisualizarFormaEntrega1;
@@ -515,11 +538,6 @@ public class AdicionarEntregador extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPedidos2;
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
-    private javax.swing.JMenu menuPedidos2;
-    private javax.swing.JMenu menuPedidos3;
-    private javax.swing.JMenu menuPedidos4;
-    private javax.swing.JMenu menuPedidos5;
-    private javax.swing.JMenu menuPedidos6;
     private javax.swing.JMenu menuPedidos7;
     private javax.swing.JTextField txtfCpf;
     private javax.swing.JTextField txtfNome;
