@@ -469,7 +469,7 @@ public class Controller extends Thread {
                         try {
                             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
-                            PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Pedido (Nome, Data, Hora, Endereco, Funcionario, Entregador, Promocao, Quantidade, Sabor, Tamanho, NumFatias, Acrescimo, Observacoes, Valor, Pedido) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                            PreparedStatement preparedStatement = sql.prepareStatement("INSERT INTO Pedido (Nome, Data, Hora, Endereco, Funcionario, Entregador, Promocao, Quantidade, Sabor, Tamanho, NumFatias, Acrescimo, Observacoes, Status, Pedido) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 
                             preparedStatement.setString(1, obj.getString("nome"));
                             preparedStatement.setString(2, obj.getString("data"));
@@ -492,7 +492,7 @@ public class Controller extends Thread {
                             try {
                                 sql.close();
                             } catch (SQLException e) {
-                                Out.println("{\"operacao\": 9,\"status\": \"Erro no banco de dados\"}");
+                                Out.println("{\"operacao\": 9,\"status\": \"Não foi possível fechar o bando de dados\"}");
                             }
                         } catch (SQLException e) {
                             Out.println("{\"operacao\": 9,\"status\": \"Erro no banco de dados\"}");
