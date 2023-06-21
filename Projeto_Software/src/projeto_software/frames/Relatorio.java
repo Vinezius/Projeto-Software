@@ -5,6 +5,7 @@
 package projeto_software.frames;
 
 import helpers.ConexaoCliente;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
@@ -419,7 +420,6 @@ public class Relatorio extends javax.swing.JFrame {
         );
 
         comboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PEQUENA", "MÉDIA", "GRANDE" }));
-        comboModalidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENTREGA", "RETIRADA" }));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -456,11 +456,11 @@ public class Relatorio extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!");
 
-                JSONArray jsonArrayPromocoes = (JSONArray) response.get("pedidos");
+                JSONArray jsonArrayPedidos = (JSONArray) response.get("pedidos");
 
-                for (int i = 0; i < jsonArrayPromocoes.length(); i++) {
-                    JSONObject pedido = jsonArrayPromocoes.getJSONObject(i);
-                    String numPedido = pedido.getString("numPedido");
+                for (int i = 0; i < jsonArrayPedidos.length(); i++) {
+                    JSONObject pedido = jsonArrayPedidos.getJSONObject(i);
+                    Integer numPedido = pedido.getInt("numPedido");
                     String data = pedido.getString("data");
                     String hora = pedido.getString("hora");
                     String nome = pedido.getString("nome");
@@ -468,7 +468,7 @@ public class Relatorio extends javax.swing.JFrame {
                     String promocao = pedido.getString("promocao");
                     String quantidade = pedido.getString("quantidade");
 
-                    String dados[] = {numPedido, data, hora, nome, valorFinal, promocao, quantidade, sabor, tamanho};
+                    String dados[] = {numPedido +"", data, hora, nome, valorFinal, promocao, quantidade, sabor, tamanho};
 
                     DefaultTableModel tabela = (DefaultTableModel) tabelaRelatorio.getModel();
 
@@ -591,6 +591,55 @@ public class Relatorio extends javax.swing.JFrame {
             if (status.equals("OK")) {
 
                 JOptionPane.showMessageDialog(this, "Dados buscados com sucesso!");
+                            
+                JSONArray jsonArrayModalidades = (JSONArray) response.get("modalidades");
+                JSONArray jsonArrayClientes = (JSONArray) response.get("clientes");
+                JSONArray jsonArrayTamanhos = (JSONArray) response.get("tamanhos");
+                JSONArray jsonArraySabores = (JSONArray) response.get("sabores");
+
+                DefaultComboBoxModel<String> comboModelModalideEntrega = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelClientes = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelTamanhos = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelSabores = new DefaultComboBoxModel<>();
+
+                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
+                    JSONObject modalidade = jsonArrayModalidades.getJSONObject(i);
+                    String modalidadeNome = modalidade.getString("modalidade");
+                    comboModelModalideEntrega.addElement(modalidadeNome);
+
+                }
+
+                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
+                    JSONObject funcionario = jsonArrayModalidades.getJSONObject(i);
+                    String nomeFuncionario = funcionario.getString("nome");
+                    comboModelModalideEntrega.addElement(nomeFuncionario);
+                }
+
+                for (int i = 0; i < jsonArraySabores.length(); i++) {
+                    JSONObject entregador = jsonArraySabores.getJSONObject(i);
+                    String nomeEntregador = entregador.getString("nome");
+                    comboModelSabores.addElement(nomeEntregador);
+
+                }
+
+                for (int i = 0; i < jsonArrayClientes.length(); i++) {
+                    JSONObject cliente = jsonArrayClientes.getJSONObject(i);
+                    String nomePromocao = cliente.getString("nome");
+                    comboModelClientes.addElement(nomePromocao);
+                }
+
+                for (int i = 0; i < jsonArrayTamanhos.length(); i++) {
+                    JSONObject tamanho = jsonArrayTamanhos.getJSONObject(i);
+                    String nomeTamanho = tamanho.getString("tamanho");
+                    comboModelTamanhos.addElement(nomeTamanho);
+
+                }
+                
+                comboCliente.setModel(comboModelClientes);
+                comboModalidade.setModel(comboModelModalideEntrega);
+                comboTamanho.setModel(comboModelTamanhos);
+                comboSabor.setModel(comboModelSabores);
+                
 
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");

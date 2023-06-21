@@ -536,13 +536,13 @@ public class VisualizarPedidos extends javax.swing.JFrame {
                 for (int i = 0; i < jsonArrayPedidos.length(); i++) {
                     String ativo = "";
                     JSONObject pedido = jsonArrayPedidos.getJSONObject(i);
-                    String numPedido = pedido.getString("numPedido");
+                    Integer numPedido = pedido.getInt("numPedido");
                     String statusPedido = pedido.getString("status");
                     String data = pedido.getString("data");
                     String hora = pedido.getString("hora");
                     String cliente = pedido.getString("nome");
                     String descPedido = pedido.getString("pedido");
-                    String dados[] = {numPedido, statusPedido, data, hora, cliente, descPedido};
+                    String dados[] = {numPedido +"", statusPedido, data, hora, cliente, descPedido};
 
                     DefaultTableModel tabela = (DefaultTableModel) tabelaPedidos.getModel();
 
