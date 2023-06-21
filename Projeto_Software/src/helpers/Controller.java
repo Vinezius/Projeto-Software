@@ -487,8 +487,8 @@ public class Controller extends Thread {
                             preparedStatement.setString(14, obj.getString("status"));
                             preparedStatement.setString(15, obj.getString("pedido"));
                             preparedStatement.setString(16, obj.getString("placa"));
-                            preparedStatement.setString(17, obj.getString("modalidade"));
-                            preparedStatement.setString(18, obj.getString("valorFinal"));
+                            preparedStatement.setString(17, obj.getString("valorFinal"));
+                            preparedStatement.setString(18, obj.getString("modalidade"));
 
                             preparedStatement.executeUpdate();
                             Out.println("{\"operacao\": 9,\"status\": \"OK\"}");
