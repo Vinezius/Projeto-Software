@@ -213,13 +213,13 @@ public class Controller extends Thread {
         return "-1";
     }
 
-    public static String orderExist(String numPedido) {
+    public static String orderExist(int numPedido) {
         try {
             java.sql.Connection sql = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzaria", "root", "");
 
             PreparedStatement preparedStatement = sql.prepareStatement("SELECT * FROM Pedido WHERE numPedido=?;");
 
-            preparedStatement.setString(1, numPedido);
+            preparedStatement.setInt(1, numPedido);
 
             ResultSet n = preparedStatement.executeQuery();
             if (n.next()) {
@@ -503,10 +503,10 @@ public class Controller extends Thread {
                         }
                     }
                 } else if (tipo == 10) {
-                    if (obj.getString("status").isBlank() || obj.getString("cliente").isBlank() || obj.getString("pedido").isBlank() || obj.getString("numPedido").isBlank() || obj.getString("numPedido").isBlank()) {
+                    if (obj.getString("status").isBlank() || obj.getString("cliente").isBlank() || obj.getString("pedido").isBlank()) {
                         Out.println("{\"operacao\": 10,\"status\": \"Todos os campos são obrigatórios\"}");
                     } else {
-                        if (!orderExist(obj.getString("numPedido")).equals("0")) {
+                        if (!orderExist(obj.getInt("numPedido")).equals("0")) {
                             Out.println("{\"operacao\": 10,\"status\": \"Pedido não existe\"}");
                         } else {
                             try {
@@ -517,7 +517,7 @@ public class Controller extends Thread {
                                 preparedStatement.setString(1, obj.getString("status"));
                                 preparedStatement.setString(2, obj.getString("cliente"));
                                 preparedStatement.setString(3, obj.getString("pedido"));
-                                preparedStatement.setString(4, obj.getString("numPedido"));
+                                preparedStatement.setInt(4, obj.getInt("numPedido"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 10,\"status\": \"OK\"}");
@@ -532,10 +532,10 @@ public class Controller extends Thread {
                         }
                     }
                 } else if (tipo == 11) {
-                    if (obj.getString("numPedido").isBlank()) {
+                    if (obj.getInt("numPedido") < 1) {
                         Out.println("{\"operacao\": 11,\"status\": \"Coloque um número de pedido válido para excluir\"}");
                     } else {
-                        if (!orderExist(obj.getString("numPedido")).equals("0")) {
+                        if (!orderExist(obj.getInt("numPedido")).equals("0")) {
                             Out.println("{\"operacao\": 11,\"status\": \"Pedido não existe\"}");
                         } else {
                             try {
@@ -543,7 +543,7 @@ public class Controller extends Thread {
 
                                 PreparedStatement preparedStatement = sql.prepareStatement("DELETE FROM Pedido WHERE numPedido=?");
 
-                                preparedStatement.setString(1, obj.getString("numPedido"));
+                                preparedStatement.setInt(1, obj.getInt("numPedido"));
 
                                 preparedStatement.executeUpdate();
                                 Out.println("{\"operacao\": 11,\"status\": \"OK\"}");
@@ -558,7 +558,7 @@ public class Controller extends Thread {
                         }
                     }
                 } else if (tipo == 12) {
-                    if (!orderExist(obj.getString("numPedido")).equals(obj.getString("0"))) {
+                    if (!orderExist(obj.getInt("numPedido")).equals(obj.getString("0"))) {
                         Out.println("{\"operacao\": 12,\"status\": \"Pedido não existe\"}");
                     } else {
                         try {
@@ -567,7 +567,7 @@ public class Controller extends Thread {
                             PreparedStatement preparedStatement = sql.prepareStatement("UPDATE Pedido SET Status=? WHERE NumPedido=?");
 
                             preparedStatement.setString(1, obj.getString("status"));
-                            preparedStatement.setString(2, obj.getString("numPedido"));
+                            preparedStatement.setInt(2, obj.getInt("numPedido"));
 
                             preparedStatement.executeUpdate();
                             Out.println("{\"operacao\": 12,\"status\": \"OK\"}");
@@ -591,7 +591,7 @@ public class Controller extends Thread {
                         String json = "";
 
                         while (n.next()) {
-                            json += "{\"numPedido\": " + n.getString("numPedido") + ",\"nome\":\"" + n.getString("nome") + "\",\"data\":\"" + n.getString("data") + "\",\"hora\":\"" + n.getString("hora") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"funcionario\":\"" + n.getString("funcionario") + "\",\"entregador\":\"" + n.getString("entregador") + "\",\"promocao\":\"" + n.getString("promocao") + "\",\"quantidade\":\"" + n.getString("quantidade") + "\",\"sabor\":\"" + n.getString("sabor") + "\",\"tamanho\":\"" + n.getString("tamanho") + "\",\"numFatias\":\"" + n.getString("numFatias") + "\",\"acrescimo\":\"" + n.getString("acrescimo") + "\",\"observacoes\":\"" + n.getString("observacoes") + "\",\"status\":\"" + n.getString("status") + "\",\"pedido\":\"" + n.getString("pedido") + "\",\"modalidade\":\"" + n.getString("modalidade") + "\",\"valorFinal\":\"" + n.getString("valorFinal") + "\",\"placa\":\"" + n.getString("placa") + "\"}";
+                            json += "{\"numPedido\": " + n.getInt("numPedido") + ",\"nome\":\"" + n.getString("nome") + "\",\"data\":\"" + n.getString("data") + "\",\"hora\":\"" + n.getString("hora") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"funcionario\":\"" + n.getString("funcionario") + "\",\"entregador\":\"" + n.getString("entregador") + "\",\"promocao\":\"" + n.getString("promocao") + "\",\"quantidade\":\"" + n.getString("quantidade") + "\",\"sabor\":\"" + n.getString("sabor") + "\",\"tamanho\":\"" + n.getString("tamanho") + "\",\"numFatias\":\"" + n.getString("numFatias") + "\",\"acrescimo\":\"" + n.getString("acrescimo") + "\",\"observacoes\":\"" + n.getString("observacoes") + "\",\"status\":\"" + n.getString("status") + "\",\"pedido\":\"" + n.getString("pedido") + "\",\"modalidade\":\"" + n.getString("modalidade") + "\",\"valorFinal\":\"" + n.getString("valorFinal") + "\",\"placa\":\"" + n.getString("placa") + "\"}";
                         }
                         json = json.replace("}{", "},{");
 
@@ -858,7 +858,7 @@ public class Controller extends Thread {
                         String jsonPedido = "";
 
                         while (c.next()) {
-                            jsonPedido += "{\"numPedido\": " + c.getString("numPedido") + ",\"nome\":\"" + c.getString("nome") + ",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"endereco\":\"" + c.getString("endereco") + "\",\"funcionario\":\"" + c.getString("funcionario") + "\",\"entregador\":\"" + c.getString("entregador") + "\",\"promocao\":\"" + c.getString("promocao") + "\",\"quantidade\":\"" + c.getString("quantidade") + "\",\"sabor\":\"" + c.getString("sabor") + "\",\"tamanho\":\"" + c.getString("tamanho") + "\",\"numFatias\":\"" + c.getString("numFatias") + "\",\"acrescimo\":\"" + c.getString("acrescimo") + "\",\"observacoes\":\"" + c.getString("observacoes") + "\",\"status\":\"" + c.getString("status") + ",\"pedido\":\"" + c.getString("pedido") + "\"}";
+                            jsonPedido += "{\"numPedido\": " + c.getInt("numPedido") + ",\"nome\":\"" + c.getString("nome") + "\",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"endereco\":\"" + c.getString("endereco") + "\",\"funcionario\":\"" + c.getString("funcionario") + "\",\"entregador\":\"" + c.getString("entregador") + "\",\"promocao\":\"" + c.getString("promocao") + "\",\"quantidade\":\"" + c.getString("quantidade") + "\",\"sabor\":\"" + c.getString("sabor") + "\",\"tamanho\":\"" + c.getString("tamanho") + "\",\"numFatias\":\"" + c.getString("numFatias") + "\",\"acrescimo\":\"" + c.getString("acrescimo") + "\",\"observacoes\":\"" + c.getString("observacoes") + "\",\"status\":\"" + c.getString("status") + "\",\"pedido\":\"" + c.getString("pedido") + "\",\"modalidade\":\"" + c.getString("modalidade") + "\",\"valorFinal\":\"" + c.getString("valorFinal") + "\",\"placa\":\"" + c.getString("placa") + "\"}";
                         }
                         jsonPedido = jsonPedido.replace("}{", "},{");
                         //JSON Entregador
