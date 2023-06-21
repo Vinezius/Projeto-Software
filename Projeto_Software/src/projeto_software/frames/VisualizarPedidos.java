@@ -98,26 +98,26 @@ public class VisualizarPedidos extends javax.swing.JFrame {
 
         tabelaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nº Pedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Cadastrado", "Pedido"
+                "Nº Pedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Pedido"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -517,8 +517,8 @@ public class VisualizarPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_menuPedidos7ActionPerformed
 
     private void btnBuscarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidosActionPerformed
-        String colunas[] = {"NºPedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Cadastrado", "Pedido"};
-        String dadosLimpeza[][] = {{"", "", "","","","",""}};
+        String colunas[] = {"NºPedido", "Status", "Data Pedido", "Hora Pedido", "Cliente", "Pedido"};
+        String dadosLimpeza[][] = {{"", "", "","","",""}};
         DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
         tabelaPedidos.setModel(model);
 
@@ -540,10 +540,9 @@ public class VisualizarPedidos extends javax.swing.JFrame {
                     String statusPedido = pedido.getString("status");
                     String data = pedido.getString("data");
                     String hora = pedido.getString("hora");
-                    String cliente = pedido.getString("cliente");
-                    String cadastrado = pedido.getString("cadastrado");
+                    String cliente = pedido.getString("nome");
                     String descPedido = pedido.getString("pedido");
-                    String dados[] = {numPedido, statusPedido, data, hora, cliente, cadastrado, descPedido};
+                    String dados[] = {numPedido, statusPedido, data, hora, cliente, descPedido};
 
                     DefaultTableModel tabela = (DefaultTableModel) tabelaPedidos.getModel();
 

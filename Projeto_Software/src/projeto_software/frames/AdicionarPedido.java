@@ -846,7 +846,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         String pedido = txtfPedido.getText();
         String numFatias = txtfNumFatias.getText();
         String observacoes = txtfObservacoes.getText();
-        System.out.println("aaa" + numFatias);
+        String valorFinal = txtfValorFinal.getText();
         try {
             JSONObject json = new JSONObject();
             json.put("nome", nomeCliente);
@@ -867,6 +867,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
             json.put("status", "Em preparação");
             json.put("numFatias", numFatias);
             json.put("observacoes", observacoes);
+            json.put("valorFinal", valorFinal);
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
 

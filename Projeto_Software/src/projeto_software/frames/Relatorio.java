@@ -6,6 +6,8 @@ package projeto_software.frames;
 
 import helpers.ConexaoCliente;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -51,7 +53,7 @@ public class Relatorio extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaRelatorio = new javax.swing.JTable();
         btnBuscarDados = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros1 = new javax.swing.JMenu();
@@ -129,7 +131,7 @@ public class Relatorio extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaRelatorio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -139,18 +141,18 @@ public class Relatorio extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Data Pedido", "Hora Pedido", "Número Pedido", "Cliente", "Valor Final", "Desconto", "Quantidade", "Sabor", "Tamanho"
+                "Número Pedido", "Data Pedido", "Hora Pedido", "Cliente", "Valor Final", "Promoção", "Quantidade", "Sabor", "Tamanho"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaRelatorio);
 
         btnBuscarDados.setText("Buscar Dados");
         btnBuscarDados.addActionListener(new java.awt.event.ActionListener() {
@@ -423,7 +425,11 @@ public class Relatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        String colunas[] = {"Número Pedido", "Data Pedido", "Hora Pedido", "Cliente", "Valor Final", "Promoção", "Quantidade", "Sabor", "Tamanho"};
+        String dadosLimpeza[][] = {{"", "", "", "", "", "", "", "", ""}};
+        DefaultTableModel model = new DefaultTableModel(dadosLimpeza, colunas);
+        tabelaRelatorio.setModel(model);
+        
         try {
             String dataInicio = txtfDataInicio.getText();
             String dataFim = txtfDataFim.getText();
@@ -441,7 +447,7 @@ public class Relatorio extends javax.swing.JFrame {
             json.put("tamanho", tamanho);
             json.put("cliente", cliente);
             json.put("modalidadeEntrega", modalidadeEntrega);
-            json.put("operacao", 14);
+            json.put("operacao", 13);
 
             JSONObject response = ConexaoCliente.ConectarServidor(json);
             String status = response.getString("status");
@@ -450,6 +456,24 @@ public class Relatorio extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!");
 
+                JSONArray jsonArrayPromocoes = (JSONArray) response.get("pedidos");
+
+                for (int i = 0; i < jsonArrayPromocoes.length(); i++) {
+                    JSONObject pedido = jsonArrayPromocoes.getJSONObject(i);
+                    String numPedido = pedido.getString("numPedido");
+                    String data = pedido.getString("data");
+                    String hora = pedido.getString("hora");
+                    String nome = pedido.getString("nome");
+                    String valorFinal = pedido.getString("valorFinal");
+                    String promocao = pedido.getString("promocao");
+                    String quantidade = pedido.getString("quantidade");
+
+                    String dados[] = {numPedido, data, hora, nome, valorFinal, promocao, quantidade, sabor, tamanho};
+
+                    DefaultTableModel tabela = (DefaultTableModel) tabelaRelatorio.getModel();
+
+                    tabela.addRow(dados);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Erro ao gerar relatório!");
 
@@ -639,7 +663,6 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuCadastros1;
     private javax.swing.JMenuItem menuItemCadastrarCliente;
     private javax.swing.JMenuItem menuItemCadastrarEntregador;
@@ -657,6 +680,7 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVisualizarPromocao1;
     private javax.swing.JMenuItem menuItemVisualizarTamanho1;
     private javax.swing.JMenu menuPedidos7;
+    private javax.swing.JTable tabelaRelatorio;
     private javax.swing.JTextField txtfDataFim;
     private javax.swing.JTextField txtfDataInicio;
     private javax.swing.JTextField txtfPlaca;
