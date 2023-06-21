@@ -587,7 +587,7 @@ public class Controller extends Thread {
                         String json = "";
 
                         while (n.next()) {
-                            json += "{\"numPedido\": " + n.getInt("numPedido") + ",\"status\":\"" + n.getString("status") + "\",\"data\":\"" + n.getString("data") + "\",\"hora\":\"" + n.getString("hora") + "\",\"cliente\":\"" + n.getString("cliente") + "\",\"cadastrado\":\"" + n.getBoolean("cadastrado") + ",\"pedido\":\"" + n.getString("pedido") + "\"}";
+                            json += "{\"numPedido\": " + n.getInt("numPedido") + ",\"nome\":\"" + n.getString("nome") + ",\"data\":\"" + n.getString("data") + "\",\"hora\":\"" + n.getString("hora") + "\",\"endereco\":\"" + n.getString("endereco") + "\",\"funcionario\":\"" + n.getString("funcionario") + "\",\"entregador\":\"" + n.getString("entregador") + "\",\"promocao\":\"" + n.getString("promocao") + "\",\"quantidade\":\"" + n.getString("quantidade") + "\",\"sabor\":\"" + n.getString("sabor") + "\",\"tamanho\":\"" + n.getString("tamanho") + "\",\"numFatias\":\"" + n.getString("numFatias") + "\",\"acrescimo\":\"" + n.getString("acrescimo") + "\",\"observacoes\":\"" + n.getString("observacoes") + "\",\"status\":\"" + n.getString("status") + ",\"pedido\":\"" + n.getString("pedido") + "\"}";
                         }
                         json = json.replace("}{", "},{");
 
@@ -854,7 +854,7 @@ public class Controller extends Thread {
                         String jsonPedido = "";
 
                         while (c.next()) {
-                            jsonPedido += "{\"numPedido\": " + c.getInt("numPedido") + ",\"status\":\"" + c.getString("status") + ",\"observacoes\":\"" + c.getString("observacoes") + "\",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"cliente\":\"" + c.getString("cliente") + "\",\"cadastrado\":\"" + c.getBoolean("cadastrado") + ",\"pedido\":\"" + c.getString("pedido") + "\"}";
+                            jsonPedido += "{\"numPedido\": " + c.getInt("numPedido") + ",\"nome\":\"" + c.getString("nome") + ",\"data\":\"" + c.getString("data") + "\",\"hora\":\"" + c.getString("hora") + "\",\"endereco\":\"" + c.getString("endereco") + "\",\"funcionario\":\"" + c.getString("funcionario") + "\",\"entregador\":\"" + c.getString("entregador") + "\",\"promocao\":\"" + c.getString("promocao") + "\",\"quantidade\":\"" + c.getString("quantidade") + "\",\"sabor\":\"" + c.getString("sabor") + "\",\"tamanho\":\"" + c.getString("tamanho") + "\",\"numFatias\":\"" + c.getString("numFatias") + "\",\"acrescimo\":\"" + c.getString("acrescimo") + "\",\"observacoes\":\"" + c.getString("observacoes") + "\",\"status\":\"" + c.getString("status") + ",\"pedido\":\"" + c.getString("pedido") + "\"}";
                         }
                         jsonPedido = jsonPedido.replace("}{", "},{");
                         //JSON Entregador
@@ -919,9 +919,12 @@ public class Controller extends Thread {
                             sql.close();
                         } catch (SQLException e) {
                             Out.println("{\"operacao\": 23,\"status\": \"Erro no banco de dados\"}");
+                            System.out.println("de cima" + e.getMessage());
+
                         }
                     } catch (SQLException e) {
                         Out.println("{\"operacao\": 23,\"status\": \"Erro no banco de dados\"}");
+                        System.out.println("de baix" + e.getMessage());
                     }
                 } else if (tipo == 24) {
                     if (!clientExist(obj.getString("nome")).equals("0")) {
