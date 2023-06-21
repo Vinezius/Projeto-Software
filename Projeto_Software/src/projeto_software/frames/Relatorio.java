@@ -22,6 +22,7 @@ public class Relatorio extends javax.swing.JFrame {
      */
     public Relatorio() {
         initComponents();
+        buscarDados();
     }
 
     /**
@@ -55,7 +56,6 @@ public class Relatorio extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaRelatorio = new javax.swing.JTable();
-        btnBuscarDados = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros1 = new javax.swing.JMenu();
         menuItemCadastrarCliente = new javax.swing.JMenuItem();
@@ -154,13 +154,6 @@ public class Relatorio extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tabelaRelatorio);
-
-        btnBuscarDados.setText("Buscar Dados");
-        btnBuscarDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarDadosActionPerformed(evt);
-            }
-        });
 
         menuCadastros1.setText("Cadastros ↓");
         menuCadastros1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -320,8 +313,7 @@ public class Relatorio extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnBuscarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(151, 151, 151)
+                                        .addGap(273, 273, 273)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,14 +375,13 @@ public class Relatorio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(txtfDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                            .addComponent(txtfDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(comboSabor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -424,6 +415,70 @@ public class Relatorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void buscarDados(){
+        try {
+
+            JSONObject json = new JSONObject();
+            json.put("operacao", 23);
+
+            JSONObject response = ConexaoCliente.ConectarServidor(json);
+            String status = response.getString("status");
+
+            if (status.equals("OK")) {
+                            
+                JSONArray jsonArrayModalidades = (JSONArray) response.get("modalidades");
+                JSONArray jsonArrayClientes = (JSONArray) response.get("clientes");
+                JSONArray jsonArrayTamanhos = (JSONArray) response.get("tamanhos");
+                JSONArray jsonArraySabores = (JSONArray) response.get("sabores");
+
+                DefaultComboBoxModel<String> comboModelModalideEntrega = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelClientes = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelTamanhos = new DefaultComboBoxModel<>();
+                DefaultComboBoxModel<String> comboModelSabores = new DefaultComboBoxModel<>();
+
+                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
+                    JSONObject modalidade = jsonArrayModalidades.getJSONObject(i);
+                    String modalidadeNome = modalidade.getString("modalidade");
+                    comboModelModalideEntrega.addElement(modalidadeNome);
+
+                }
+
+                for (int i = 0; i < jsonArraySabores.length(); i++) {
+                    JSONObject entregador = jsonArraySabores.getJSONObject(i);
+                    String nomeEntregador = entregador.getString("sabor");
+                    comboModelSabores.addElement(nomeEntregador);
+
+                }
+
+                for (int i = 0; i < jsonArrayClientes.length(); i++) {
+                    JSONObject cliente = jsonArrayClientes.getJSONObject(i);
+                    String nomePromocao = cliente.getString("nome");
+                    comboModelClientes.addElement(nomePromocao);
+                }
+
+                for (int i = 0; i < jsonArrayTamanhos.length(); i++) {
+                    JSONObject tamanho = jsonArrayTamanhos.getJSONObject(i);
+                    String nomeTamanho = tamanho.getString("tamanho");
+                    comboModelTamanhos.addElement(nomeTamanho);
+
+                }
+                
+                comboCliente.setModel(comboModelClientes);
+                comboModalidade.setModel(comboModelModalideEntrega);
+                comboTamanho.setModel(comboModelTamanhos);
+                comboSabor.setModel(comboModelSabores);
+                
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String colunas[] = {"Número Pedido", "Data Pedido", "Hora Pedido", "Cliente", "Valor Final", "Promoção", "Quantidade", "Sabor", "Tamanho"};
         String dadosLimpeza[][] = {{"", "", "", "", "", "", "", "", ""}};
@@ -579,71 +634,6 @@ public class Relatorio extends javax.swing.JFrame {
         txtfPlaca.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
-        try {
-
-            JSONObject json = new JSONObject();
-            json.put("operacao", 23);
-
-            JSONObject response = ConexaoCliente.ConectarServidor(json);
-            String status = response.getString("status");
-
-            if (status.equals("OK")) {
-
-                JOptionPane.showMessageDialog(this, "Dados buscados com sucesso!");
-                            
-                JSONArray jsonArrayModalidades = (JSONArray) response.get("modalidades");
-                JSONArray jsonArrayClientes = (JSONArray) response.get("clientes");
-                JSONArray jsonArrayTamanhos = (JSONArray) response.get("tamanhos");
-                JSONArray jsonArraySabores = (JSONArray) response.get("sabores");
-
-                DefaultComboBoxModel<String> comboModelModalideEntrega = new DefaultComboBoxModel<>();
-                DefaultComboBoxModel<String> comboModelClientes = new DefaultComboBoxModel<>();
-                DefaultComboBoxModel<String> comboModelTamanhos = new DefaultComboBoxModel<>();
-                DefaultComboBoxModel<String> comboModelSabores = new DefaultComboBoxModel<>();
-
-                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
-                    JSONObject modalidade = jsonArrayModalidades.getJSONObject(i);
-                    String modalidadeNome = modalidade.getString("modalidade");
-                    comboModelModalideEntrega.addElement(modalidadeNome);
-
-                }
-
-                for (int i = 0; i < jsonArraySabores.length(); i++) {
-                    JSONObject entregador = jsonArraySabores.getJSONObject(i);
-                    String nomeEntregador = entregador.getString("sabor");
-                    comboModelSabores.addElement(nomeEntregador);
-
-                }
-
-                for (int i = 0; i < jsonArrayClientes.length(); i++) {
-                    JSONObject cliente = jsonArrayClientes.getJSONObject(i);
-                    String nomePromocao = cliente.getString("nome");
-                    comboModelClientes.addElement(nomePromocao);
-                }
-
-                for (int i = 0; i < jsonArrayTamanhos.length(); i++) {
-                    JSONObject tamanho = jsonArrayTamanhos.getJSONObject(i);
-                    String nomeTamanho = tamanho.getString("tamanho");
-                    comboModelTamanhos.addElement(nomeTamanho);
-
-                }
-                
-                comboCliente.setModel(comboModelClientes);
-                comboModalidade.setModel(comboModelModalideEntrega);
-                comboTamanho.setModel(comboModelTamanhos);
-                comboSabor.setModel(comboModelSabores);
-                
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao buscar dados!");
-
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_btnBuscarDadosActionPerformed
-
     private void menuItemCadastrarTamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadastrarTamanhoActionPerformed
         AdicionarTamanho adicionarTamanho = new AdicionarTamanho();
         adicionarTamanho.setVisible(true);
@@ -687,7 +677,6 @@ public class Relatorio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscarDados;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRelatorio1;
     private javax.swing.JComboBox<String> comboCliente;

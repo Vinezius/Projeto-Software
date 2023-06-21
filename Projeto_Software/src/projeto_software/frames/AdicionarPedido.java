@@ -48,7 +48,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
         comboEntrega = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtfEndereco = new javax.swing.JTextField();
-        btnBuscarDados = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtfNomeCliente = new javax.swing.JTextField();
         comboFuncionario = new javax.swing.JComboBox<>();
@@ -145,13 +144,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel5.setText("Endereço");
-
-        btnBuscarDados.setText("Buscar Dados");
-        btnBuscarDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarDadosActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setText("Funcionário");
@@ -417,7 +409,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnBuscarDados)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,9 +504,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscarDados)
-                                .addGap(26, 26, 26)
+                                .addGap(62, 62, 62)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
@@ -682,10 +671,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-
-    private void btnBuscarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDadosActionPerformed
-
-    }//GEN-LAST:event_btnBuscarDadosActionPerformed
 
     private void txtfNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNomeClienteActionPerformed
 
@@ -890,7 +875,7 @@ public class AdicionarPedido extends javax.swing.JFrame {
         }
 
         if (promocao == "Natal" || promocao == "natal") {
-            valorFinal -= 10.0;
+            valorFinal = valorFinal - 10.0;
         }
 
         txtfValorFinal.setText(valorFinal + "");
@@ -908,11 +893,11 @@ public class AdicionarPedido extends javax.swing.JFrame {
 
             case "Média":
                 txtfNumFatias.setText("6");
-                txtfValorBase.setText(30.99 + "");
+                txtfValorBase.setText(20.99 + "");
 
             case "Grande":
                 txtfNumFatias.setText("8");
-                txtfValorBase.setText(40.99 + "");
+                txtfValorBase.setText(20.99 + "");
 
             default:
                 txtfNumFatias.setText("");
@@ -992,7 +977,6 @@ public class AdicionarPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarDados;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnRelatorio;
