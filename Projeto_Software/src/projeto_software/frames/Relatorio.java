@@ -609,15 +609,9 @@ public class Relatorio extends javax.swing.JFrame {
 
                 }
 
-                for (int i = 0; i < jsonArrayModalidades.length(); i++) {
-                    JSONObject funcionario = jsonArrayModalidades.getJSONObject(i);
-                    String nomeFuncionario = funcionario.getString("nome");
-                    comboModelModalideEntrega.addElement(nomeFuncionario);
-                }
-
                 for (int i = 0; i < jsonArraySabores.length(); i++) {
                     JSONObject entregador = jsonArraySabores.getJSONObject(i);
-                    String nomeEntregador = entregador.getString("nome");
+                    String nomeEntregador = entregador.getString("sabor");
                     comboModelSabores.addElement(nomeEntregador);
 
                 }
